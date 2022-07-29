@@ -2,30 +2,39 @@ import React from "react";
 import Day from "../day/Day";
 
 import "./week.scss";
+import { todayIs } from "../../utils/dateUtils.js";
+import moment from "moment";
 
-const Week = ({ weekDates, events }) => {
+const Week = ({ weekDates, events, toggleModal }) => {
     return (
-        <div className='calendar__week'>
-            {weekDates.map((dayStart) => {
-                const dayEnd = new Date(dayStart.getTime()).setHours(
-                    dayStart.getHours() + 24
-                );
+        <>
+            <div className='calendar__week'>
+                {weekDates.map((dayStart) => {
+                    const dayEnd = new Date(dayStart.getTime()).setHours(
+                        dayStart.getHours() + 24
+                    );
 
-                //getting all events from the day we will render
-                const dayEvents = events.filter(
-                    (event) =>
-                        event.dateFrom > dayStart && event.dateTo < dayEnd
-                );
+                    //getting all events from the day we will render
+                    const dayEvents = events.filter(
+                        (event) =>
+                            event.dateFrom > dayStart && event.dateTo < dayEnd
+                    );
 
-                return (
-                    <Day
-                        key={dayStart.getDate()}
-                        dataDay={dayStart.getDate()}
-                        dayEvents={dayEvents}
-                    />
-                );
-            })}
-        </div>
+                    return (
+                        <Day
+                            key={dayStart.getDate()}
+                            dataDay={dayStart.getDate()}
+                            dayEvents={dayEvents}
+                            isNowData={
+                                moment(dayStart).format("DD:MMM:YYYY") ===
+                                moment(todayIs).format("DD:MMM:YYYY")
+                            }
+                            toggleModal={toggleModal}
+                        />
+                    );
+                })}
+            </div>
+        </>
     );
 };
 

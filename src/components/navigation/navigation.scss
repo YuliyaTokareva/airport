@@ -15,3 +15,27 @@
     border-left: 1px solid #eee;
   }
 }
+.day-label{
+
+  &__day-number {
+    margin: auto;
+  
+  }
+  &__day-number-block {
+    display: flex;
+    width: 34px;
+    height: 34px;
+  }
+}
+
+
+.activ-date{
+      width: 34px;
+      height: 34px;
+      background-color: #1a73e8;
+      color: white;
+      border-radius: 50%;
+}
+.activ-day{
+  color:#1a73e8;
+}

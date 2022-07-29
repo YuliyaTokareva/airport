@@ -54,6 +54,7 @@ class App extends Component {
                     prevWeek={this.prevWeek}
                     today={this.today}
                     toggleModal={this.toggleModal}
+                    weekDates={weekDates}
                 />
                 {this.state.modalIsOpen ? (
                     <Modal closeModal={this.toggleModal} />
@@ -61,7 +62,10 @@ class App extends Component {
                     ""
                 )}
 
-                <Calendar weekDates={weekDates} />
+                <Calendar
+                    weekDates={weekDates}
+                    toggleModal={this.toggleModal}
+                />
             </>
         );
     }

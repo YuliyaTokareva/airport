@@ -1,8 +1,10 @@
 import React from "react";
 import Day from "../day/Day";
+import { months } from "../../utils/dateUtils.js";
 import "./header.scss";
 
-const Header = ({ nextWeek, prevWeek, today, toggleModal }) => {
+const Header = ({ nextWeek, prevWeek, today, toggleModal, weekDates }) => {
+    // console.log(weekDates.length);
     return (
         <header className='header'>
             <button
@@ -30,7 +32,10 @@ const Header = ({ nextWeek, prevWeek, today, toggleModal }) => {
                 >
                     <i className='fas fa-chevron-right'></i>
                 </button>
-                <span className='navigation__displayed-month'></span>
+                <span className='navigation__displayed-month'>
+                    {`${months[weekDates[0].getMonth()]} —
+                        ${months[weekDates[weekDates.length - 1].getMonth()]}`}
+                </span>
             </div>
         </header>
     );
