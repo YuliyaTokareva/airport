@@ -1,0 +1,17 @@
+.button .modal__content{
+  padding: 0px;
+ 
+}
+.delete-event-btn {
+  cursor: pointer;
+  border: none;
+  padding: 0;
+  display: flex;
+  justify-content: space-evenly;
+  width: 150px;
+  height: 38px;
+}
+.delete-event-btn__text,.delete-event-btn__icon{
+      margin-top: auto;
+      margin-bottom: auto;
+}

@@ -5,7 +5,7 @@ import './week.scss';
 import { todayIs } from '../../utils/dateUtils.js';
 import moment from 'moment';
 
-const Week = ({ weekDates, events, toggleModal }) => {
+const Week = ({ weekDates, events, openModal, openDeleteBtn }) => {
   return (
     <>
       <div className="calendar__week">
@@ -33,7 +33,8 @@ const Week = ({ weekDates, events, toggleModal }) => {
               isNowData={
                 moment(dayStart).format('DD:MMM:YYYY') === moment(todayIs).format('DD:MMM:YYYY')
               }
-              toggleModal={toggleModal}
+              openModal={openModal}
+              openDeleteBtn={openDeleteBtn}
             />
           );
         })}

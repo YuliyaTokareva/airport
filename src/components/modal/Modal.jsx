@@ -1,16 +1,15 @@
 import React, { Component } from 'react';
-import moment from 'moment';
-import { createTask } from '../../gateway/events';
+
 import './modal.scss';
-import { fetchTasksList } from '../../gateway/events';
+
 ///res: {title: 't', date: '2022-07-04', startTime: '19:11', endTime: '19:23', description: 'dddd'}
 
 class Modal extends Component {
   state = {
     title: '',
-    date: '',
-    startTime: '',
-    endTime: '',
+    date: this.props.date,
+    startTime: this.props.timeStart,
+    endTime: this.props.timeEnd,
     description: '',
   };
   handleChange = e => {
@@ -28,23 +27,13 @@ class Modal extends Component {
     const newEvent = { ...dataInfo, dateFrom, dateTo };
     return newEvent;
   };
-  //   componentDidMount() {
-  //     // this.fetchEvents();
-  //     this.props.fetchEvents();
-  //   }
 
-  //   createEvent = () => {
-  //     const eventData = this.prepareNewEvent();
-  //     createTask(eventData);
-  //     this.props.fetchEvents();
-  //     this.props.closeModal();
-  //   };
   render() {
     return (
       <div className="modal overlay hidden">
         <div className="modal__content">
           <div className="create-event">
-            <button className="create-event__close-btn" onClick={() => this.props.closeModal()}>
+            <button className="create-event__close-btn" onClick={e => this.props.closeModal(e)}>
               +
             </button>
             <form

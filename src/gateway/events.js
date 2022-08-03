@@ -41,7 +41,7 @@ export const fetchEventList = () => {
       }
     })
     .then(eventList => {
-      return eventList.map(({ _id, ...event }) => ({ id: _id, ...event }));
+      return eventList;
     });
 };
 
@@ -54,7 +54,17 @@ export const createEvent = eventData => {
     body: JSON.stringify(eventData),
   }).then(response => {
     if (!response.ok) {
-      throw new Error('Faild to create task');
+      throw new Error('Faild to create event');
+    }
+  });
+};
+
+export const deleteEvent = eventId => {
+  return fetch(`${baseUrl}/${eventId}`, {
+    method: 'DELETE',
+  }).then(response => {
+    if (!response.ok) {
+      throw new Error('Faild to delete event');
     }
   });
 };

@@ -36,7 +36,7 @@ class Calendar extends Component {
   //   console.log('uppdate');
   // };
   render() {
-    const { weekDates, toggleModal, events } = this.props;
+    const { weekDates, openModal, events, openDeleteBtn } = this.props;
     console.log(events);
     return (
       <section className="calendar">
@@ -44,7 +44,12 @@ class Calendar extends Component {
         <div className="calendar__body">
           <div className="calendar__week-container">
             <Sidebar />
-            <Week weekDates={weekDates} events={events} toggleModal={toggleModal} />
+            <Week
+              weekDates={weekDates}
+              events={events}
+              openModal={openModal}
+              openDeleteBtn={openDeleteBtn}
+            />
           </div>
         </div>
       </section>
