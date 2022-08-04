@@ -1,8 +1,8 @@
 import React from 'react';
-
+import PropTypes from 'prop-types';
 import './button.scss';
 
-const Button = ({ onClick, closeDeleteBtn }) => {
+const Button = ({ onClick, closeDeleteBtn, clientX, clientY }) => {
   return (
     <div
       className="modal overlay hidden button"
@@ -10,7 +10,7 @@ const Button = ({ onClick, closeDeleteBtn }) => {
         closeDeleteBtn();
       }}
     >
-      <div className="modal__content">
+      <div className="modal__content" style={{ top: `${clientY}px`, left: `${clientX}px` }}>
         <button
           className="delete-event-btn"
           onClick={e => {
@@ -24,5 +24,14 @@ const Button = ({ onClick, closeDeleteBtn }) => {
     </div>
   );
 };
-
+Button.propTypes = {
+  onClick: PropTypes.func.isRequired,
+  closeDeleteBtn: PropTypes.func.isRequired,
+  clientX: PropTypes.number,
+  clientY: PropTypes.number,
+};
+Button.defaultProps = {
+  height: 60,
+  marginTop: 0,
+};
 export default Button;

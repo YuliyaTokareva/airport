@@ -16,7 +16,7 @@ import Modal from './components/modal/Modal.jsx';
 
 class App extends Component {
   state = {
-    weekStartDate: new Date(),
+    currentDate: new Date(),
     modalIsOpen: false,
     events: [],
     modalButtonDeleteIsOpen: false,
@@ -26,60 +26,46 @@ class App extends Component {
   }
   fetchEvents = () => {
     fetchEventList().then(eventList => {
-      this.setState({
-        events: eventList,
-      });
+      this.updateToState('events', eventList);
     });
   };
   createEvent = eventData => {
     createEvent(eventData).then(() => this.fetchEvents());
     this.toggleModal();
   };
-  nextWeek = () => {
-    const newWeek = nextWekGenerate(this.state.weekStartDate);
-    // new Date(
-    //   this.state.weekStartDate.setDate(this.state.weekStartDate.getDate() + 7)
-    // );
-
+  updateToState = (name, value) => {
     this.setState({
-      weekStartDate: newWeek,
+      [name]: value,
     });
+  };
+  nextWeek = () => {
+    const newWeek = nextWekGenerate(this.state.currentDate);
+    this.updateToState('currentDate', newWeek);
   };
   prevWeek = () => {
-    const newWeek = prevWekGenerate(this.state.weekStartDate);
-
-    this.setState({
-      weekStartDate: newWeek,
-    });
+    const prewWeek = prevWekGenerate(this.state.currentDate);
+    this.updateToState('currentDate', prewWeek);
   };
+
   today = () => {
-    this.setState({
-      weekStartDate: new Date(),
-    });
+    this.updateToState('currentDate', new Date());
   };
 
   toggleModal = () => {
-    this.setState({
-      modalIsOpen: !this.state.modalIsOpen,
-    });
+    this.updateToState('modalIsOpen', !this.state.modalIsOpen);
   };
-  toggleBtn = id => {
-    this.setState({
-      modalButtonDeleteIsOpen: !this.state.modalButtonDeleteIsOpen,
-    });
-
+  toggleBtn = (id, e) => {
+    this.updateToState('modalButtonDeleteIsOpen', !this.state.modalButtonDeleteIsOpen);
     this.idToDelete = id;
+    this.clientY = e.clientY;
+    this.clientX = e.clientX;
   };
   closeleBtn = () => {
-    this.setState({
-      modalButtonDeleteIsOpen: false,
-    });
+    this.updateToState('modalButtonDeleteIsOpen', false);
   };
   handleEventDelete = () => {
     deleteEvent(this.idToDelete).then(() => this.fetchEvents());
-    this.setState({
-      modalButtonDeleteIsOpen: !this.state.modalButtonDeleteIsOpen,
-    });
+    this.updateToState('modalButtonDeleteIsOpen', !this.state.modalButtonDeleteIsOpen);
   };
 
   openModal = e => {
@@ -89,17 +75,14 @@ class App extends Component {
       this.timeStart = startTime < 10 ? `0${startTime}:00` : `${startTime}:00`;
       this.timeEnd = hourData < 10 ? `0${hourData}:00` : `${hourData}:00`;
       const dayData = e.target.parentNode.getAttribute('data-day');
-      const findDate = generateWeekRange(getWeekStartDate(this.state.weekStartDate)).filter(
-        date => {
-          console.log(`${dayData} & ${date.getDate()}`, +dayData === date.getDate());
-          return +dayData === date.getDate();
-        }
-      );
+      const findDate = generateWeekRange(getWeekStartDate(this.state.currentDate)).filter(date => {
+        return +dayData === date.getDate();
+      });
       this.date = moment(findDate[0]).format('YYYY-MM-DD');
       this.toggleModal();
     }
     if (e.target.parentNode.className === 'header') {
-      this.date = moment(this.state.weekStartDate).format('YYYY-MM-DD');
+      this.date = moment(this.state.currentDate).format('YYYY-MM-DD');
       this.timeStart = moment(new Date()).format('HH:mm');
       this.timeEnd = moment(new Date()).add(1, 'hours').format('HH:mm');
       this.toggleModal();
@@ -107,8 +90,8 @@ class App extends Component {
   };
 
   render() {
-    const { weekStartDate } = this.state;
-    const weekDates = generateWeekRange(getWeekStartDate(weekStartDate));
+    const { currentDate } = this.state;
+    const weekDates = generateWeekRange(getWeekStartDate(currentDate));
 
     return (
       <>
@@ -126,8 +109,6 @@ class App extends Component {
             timeStart={this.timeStart}
             timeEnd={this.timeEnd}
             date={this.date}
-            title={this.title}
-            description={this.description}
           />
         ) : (
           ''
@@ -143,8 +124,8 @@ class App extends Component {
           <Button
             onClick={this.handleEventDelete}
             closeDeleteBtn={this.closeleBtn}
-            screenX={this.screenX}
-            screenY={this.screenY}
+            clientX={this.clientX}
+            clientY={this.clientY}
           />
         ) : (
           ''

@@ -1,6 +1,6 @@
 import React from 'react';
 import Day from '../day/Day';
-
+import PropTypes from 'prop-types';
 import './week.scss';
 import { todayIs } from '../../utils/dateUtils.js';
 import moment from 'moment';
@@ -41,6 +41,12 @@ const Week = ({ weekDates, events, openModal, openDeleteBtn }) => {
       </div>
     </>
   );
+};
+Week.propTypes = {
+  weekDates: PropTypes.arrayOf(Date),
+  events: PropTypes.array,
+  openModal: PropTypes.func.isRequired,
+  openDeleteBtn: PropTypes.func.isRequired,
 };
 
 export default Week;

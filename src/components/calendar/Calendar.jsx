@@ -1,60 +1,34 @@
-import React, { Component } from 'react';
-
+import React from 'react';
+import PropTypes from 'prop-types';
 import Navigation from './../navigation/Navigation';
 import Week from '../week/Week';
 import Sidebar from '../sidebar/Sidebar';
-import events from '../../gateway/events';
-import { fetchTasksList } from '../../gateway/events';
 
 import './calendar.scss';
 
-class Calendar extends Component {
-  // state = {
-  //   events,
-  // };
-  // state = {
-  //   events: [],
-  // };
-  // componentDidMount() {
-  //   this.props.fetchEvents();
-  // }
-  // fetchEvents = () => {
-  //   fetchTasksList().then(eventList => {
-  //     //const {} = eventList;
-  //     console.log(eventList);
-  //     this.setState({
-  //       events: eventList,
-  //     });
-  //   });
-  // };
-  // onCreate = text => {
-  //   const newTask = {
-  //     text: text,
-  //     done: false,
-  //   };
-  //   createTask(newTask).then(() => this.fetchTasks());
-  //   console.log('uppdate');
-  // };
-  render() {
-    const { weekDates, openModal, events, openDeleteBtn } = this.props;
-    console.log(events);
-    return (
-      <section className="calendar">
-        <Navigation weekDates={weekDates} />
-        <div className="calendar__body">
-          <div className="calendar__week-container">
-            <Sidebar />
-            <Week
-              weekDates={weekDates}
-              events={events}
-              openModal={openModal}
-              openDeleteBtn={openDeleteBtn}
-            />
-          </div>
+const Calendar = ({ weekDates, openModal, events, openDeleteBtn }) => {
+  return (
+    <section className="calendar">
+      <Navigation weekDates={weekDates} />
+      <div className="calendar__body">
+        <div className="calendar__week-container">
+          <Sidebar />
+          <Week
+            weekDates={weekDates}
+            events={events}
+            openModal={openModal}
+            openDeleteBtn={openDeleteBtn}
+          />
         </div>
-      </section>
-    );
-  }
-}
+      </div>
+    </section>
+  );
+};
+Calendar.propTypes = {
+  weekDates: PropTypes.arrayOf(Date),
+  events: PropTypes.array,
+  openModal: PropTypes.func.isRequired,
+  openDeleteBtn: PropTypes.func.isRequired,
+};
 
 export default Calendar;

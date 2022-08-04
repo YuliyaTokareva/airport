@@ -49,16 +49,12 @@ export const months = [
 export const todayIs = new Date();
 
 export const nextWekGenerate = startIs => {
-  console.log(startIs.getDate());
-  console.log(getWeekStartDate(startIs));
   const newWeek = new Date(
     getWeekStartDate(startIs).setDate(generateWeekRange(startIs)[0].getDate() + 7)
   );
   return newWeek;
 };
 export const prevWekGenerate = startIs => {
-  console.log(startIs.getDate());
-  console.log(getWeekStartDate(startIs));
   const newWeek = new Date(
     getWeekStartDate(startIs).setDate(generateWeekRange(startIs)[0].getDate() - 7)
   );

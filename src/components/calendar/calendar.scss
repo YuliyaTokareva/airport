@@ -68,6 +68,6 @@
 .red-line {
   position: absolute;
   width: 100%;
-  border-top: 2px solid red;
+  border-top: 2px solid $border-color-red;
   z-index: 5;
 }

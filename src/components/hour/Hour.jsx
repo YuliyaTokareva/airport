@@ -1,9 +1,10 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 import Event from '../event/Event';
 import TimeLine from '../timeline/TimeLine';
 import { formatMins } from '../../../src/utils/dateUtils.js';
 import { todayIs } from '../../utils/dateUtils.js';
+import PropTypes from 'prop-types';
 
 import moment from 'moment';
 
@@ -33,13 +34,19 @@ const Hour = ({ dataHour, hourEvents, isNowData, openModal, openDeleteBtn }) => 
             dataId={id}
             time={`${eventStart} - ${eventEnd}`}
             title={title}
-            // openModal={openModal}
             openDeleteBtn={openDeleteBtn}
           />
         );
       })}
     </div>
   );
+};
+Hour.propTypes = {
+  dataHour: PropTypes.number,
+  hourEvents: PropTypes.array,
+  isNowData: PropTypes.bool,
+  openModal: PropTypes.func.isRequired,
+  openDeleteBtn: PropTypes.func.isRequired,
 };
 
 export default Hour;

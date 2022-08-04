@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 import './modal.scss';
 
@@ -65,6 +66,7 @@ class Modal extends Component {
                   className="event-form__field"
                   onChange={this.handleChange}
                   value={this.state.startTime}
+                  step="300"
                 />
                 <span>-</span>
                 <input
@@ -73,6 +75,7 @@ class Modal extends Component {
                   className="event-form__field"
                   value={this.state.endTime}
                   onChange={this.handleChange}
+                  step="300"
                 />
               </div>
               <textarea
@@ -92,5 +95,16 @@ class Modal extends Component {
     );
   }
 }
+
+Modal.propTypes = {
+  state: PropTypes.shape({
+    date: PropTypes.date,
+    startTime: PropTypes.date,
+    endTime: PropTypes.date,
+  }),
+
+  onClick: PropTypes.func,
+  onSubmit: PropTypes.func,
+};
 
 export default Modal;
