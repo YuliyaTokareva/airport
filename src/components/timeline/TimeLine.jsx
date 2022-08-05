@@ -6,7 +6,6 @@ const TimeLine = () => {
     const [clock, setClock] = useState({
         time: new Date(),
     });
-    console.log('test')
     const { time } = clock;
     useEffect(() => {
         const interval = setInterval(() => {

@@ -31,7 +31,10 @@ class Modal extends Component {
 
   render() {
     return (
-      <div className="modal overlay hidden" onClick={e => this.props.closeModal(e)}>
+      <div className="modal overlay hidden" onClick={e => {
+        if (e.target.className === 'modal overlay hidden') {
+this.props.closeModal(e)}
+        }}>
         <div className="modal__content">
           <div className="create-event">
             <button className="create-event__close-btn" onClick={e => this.props.closeModal(e)}>
