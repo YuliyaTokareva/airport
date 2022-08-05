@@ -1,3 +1,4 @@
+@import "src/variables.scss";
 .calendar {
   display: flex;
   flex-direction: column;
@@ -12,7 +13,7 @@
   &__day {
     position: relative;
     flex: 1;
-    border-left: 1px solid #eee;
+    border-left: 1px solid $border-color-ligth-gray;
   }
 }
 .day-label{
@@ -32,10 +33,10 @@
 .activ-date{
       width: 34px;
       height: 34px;
-      background-color: #1a73e8;
-      color: white;
+      background-color: $bacground-color-blue;
+      color: $color-white;
       border-radius: 50%;
 }
 .activ-day{
-  color:#1a73e8;
+  color:$color-blue;
 }

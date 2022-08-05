@@ -1,11 +1,12 @@
+@import "src/variables.scss";
 .event {
   position: absolute;
   width: 80%;
-  background-color: cornflowerblue;
+  background-color: $bacground-color-blue-btn;
   z-index: 1;
   border-radius: 8px;
   padding: 8px;
-  color: #fff;
+  color: $color-white;
   position: relative;
 
   &__title {
@@ -18,11 +19,8 @@
 
   &:hover {
     font-weight: bold;
-    background-color: red;
+    background-color: $bacground-color-red-hover;
   }
 }
 
-// .delete-event-btn {
-//   cursor: pointer;
-//   border: none;
-// }
+

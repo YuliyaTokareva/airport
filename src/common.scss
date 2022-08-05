@@ -1,7 +1,8 @@
+@import "src/variables.scss";
 .button {
   height: 40px;
   border-radius: 8px;
-  border: 1px solid #ccc;
+  border: 1px solid $border-color-ligth-middle-gray;
   outline: none;
   cursor: pointer;
   font-size: 16px;
@@ -22,9 +23,9 @@
   align-items: center;
 
   &__content {
-    background: #fff;
+    background: $color-white;
     padding: 16px;
-    border: 1px solid #ccc;
+    border: 1px solid $border-color-ligth-middle-gray;
     border-radius: 8px;
   }
 }
@@ -35,16 +36,16 @@
   left: 0;
   width: 100vw;
   height: 100vh;
-  background-color: #cccccc45;
+  background-color: $bacground-color-gray;
   z-index: 10;
 }
 
 .popup {
   &__content {
     position: absolute;
-    background: #fff;
+    background: $color-white;
     padding: 16px;
-    border: 1px solid #ccc;
+    border: 1px solid $border-color-ligth-middle-gray;
     border-radius: 8px;
   }
 }

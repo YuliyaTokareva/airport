@@ -1,3 +1,4 @@
+@import "src/variables.scss";
 .calendar {
   display: flex;
   flex-direction: column;
@@ -6,26 +7,7 @@
   &__time-slot {
     height: 59px;
     position: relative;
-    border-bottom: 1px solid #eee;
+    border-bottom: 1px solid $border-color-ligth-middle-gray;
   }
 }
 
-.calendar__time-indickator-line {
-    position: absolute;
-    z-index: 9;
-    border-top: #ea4335 solid 2px;
-    left: 0;
-    right: 0;
-}
-.calendar__time-indickator-circle{
-      background: #ea4335;
-      border-radius: 50%;
-      content: "";
-      position: absolute;
-      height: 12px;
-      margin-left: -6.5px;
-      margin-top: -5px;
-      width: 12px;
-      z-index: 9;
-
-}

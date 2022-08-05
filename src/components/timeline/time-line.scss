@@ -1,0 +1,21 @@
+@import "src/variables.scss";
+.calendar__time-indickator-line {
+  position: absolute;
+  z-index: 9;
+  border-top: $border-color-red-time-line solid 2px;
+  left: 0;
+  right: 0;
+}
+
+.calendar__time-indickator-circle {
+  background: $bacground-color-red;
+  border-radius: 50%;
+  content: "";
+  position: absolute;
+  height: 12px;
+  margin-left: -6.5px;
+  margin-top: -5px;
+  width: 12px;
+  z-index: 9;
+
+}
