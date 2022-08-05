@@ -31,7 +31,7 @@ class Modal extends Component {
 
   render() {
     return (
-      <div className="modal overlay hidden">
+      <div className="modal overlay hidden" onClick={e => this.props.closeModal(e)}>
         <div className="modal__content">
           <div className="create-event">
             <button className="create-event__close-btn" onClick={e => this.props.closeModal(e)}>
@@ -51,6 +51,7 @@ class Modal extends Component {
                 className="event-form__field"
                 value={this.state.title}
                 onChange={this.handleChange}
+                required
               />
               <div className="event-form__time">
                 <input
