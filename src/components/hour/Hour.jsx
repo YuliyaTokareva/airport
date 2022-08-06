@@ -15,6 +15,12 @@ const Hour = ({ dataHour, hourEvents, isNowData, openModal, openDeleteBtn }) => 
     <div
       className="calendar__time-slot"
       data-time={dataHour + 1}
+      onTouchStart={
+        e => {
+        e.preventDefault(); 
+        openModal(e);
+      }
+      }
       onClick={e => {
         openModal(e);
       }}
