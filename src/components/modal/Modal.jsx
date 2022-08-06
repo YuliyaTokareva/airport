@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-
 import './modal.scss';
+import moment from 'moment';
 
 ///res: {title: 't', date: '2022-07-04', startTime: '19:11', endTime: '19:23', description: 'dddd'}
 
@@ -22,14 +22,18 @@ class Modal extends Component {
   };
   prepareNewEvent = () => {
     const copyEvent = Object.assign({}, this.state);
+       console.log(copyEvent)
     const { date, startTime, endTime, ...dataInfo } = copyEvent;
-    const dateFrom = new Date(date.concat(',', startTime));
-    const dateTo = new Date(date.concat(',', endTime));
+    const dateFrom = moment(date.concat(' ', startTime)).format();
+    const dateTo = moment(date.concat(' ', endTime)).format();
     const newEvent = { ...dataInfo, dateFrom, dateTo };
+    console.log(newEvent)
+        console.log(this.state)
     return newEvent;
   };
 
   render() {
+    console.log(this.state)
     return (
       <div className="modal overlay hidden" onClick={e => {
         if (e.target.className === 'modal overlay hidden') {
@@ -55,6 +59,8 @@ this.props.closeModal(e)}
                 value={this.state.title}
                 onChange={this.handleChange}
                 required
+                autoFocus
+
               />
               <div className="event-form__time">
                 <input
@@ -70,7 +76,7 @@ this.props.closeModal(e)}
                   className="event-form__field"
                   onChange={this.handleChange}
                   value={this.state.startTime}
-                  step="300"
+                  
                 />
                 <span>-</span>
                 <input
@@ -79,7 +85,7 @@ this.props.closeModal(e)}
                   className="event-form__field"
                   value={this.state.endTime}
                   onChange={this.handleChange}
-                  step="300"
+                  
                 />
               </div>
               <textarea
