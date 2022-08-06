@@ -1,6 +1,6 @@
 const baseUrl = "https://62ac36829fa81d00a7ac26c0.mockapi.io/api/v1/calendar";
-export const fetchEventList = () =>
-  fetch(baseUrl)
+export const fetchEventList = () =>{
+  return fetch(baseUrl)
     .then((res) => {
       if (!res.ok) {
         throw new Error("Faild to get events");
@@ -8,7 +8,7 @@ export const fetchEventList = () =>
       // eslint-disable-next-line
        return res.json();
     })
-    .then((eventList) => eventList);
+    .then((eventList) => eventList)};
 
 export const createEvent = (eventData) =>
   fetch(baseUrl, {
