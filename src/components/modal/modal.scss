@@ -67,3 +67,10 @@
     cursor: pointer;
   }
 }
+.error-message{
+  color: $color-red;
+  
+}
+.disabled{
+  background-color: $bacground-color-gray;
+}

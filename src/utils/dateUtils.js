@@ -62,3 +62,11 @@ export const prevWekGenerate = (startIs) => {
   );
   return newWeek;
 };
+
+export const convertStringToTime = (timeString) => {
+  const timeArr = timeString.split(":");
+  if (timeArr[0] === "00") {
+    return timeArr[1];
+  }
+  return timeArr[0] * 60 + timeArr[1];
+};
