@@ -60,6 +60,7 @@ class Modal extends Component {
   };
 
   render() {
+    const isValid=!this.state.formValidTimeStart||!this.state.formValidTitle||!this.state.formValidTimeEnd;
     return (
       <div className="modal overlay hidden" onClick={e => {
         if (e.target.className === 'modal overlay hidden') {
@@ -122,8 +123,8 @@ this.props.closeModal(e)}
                 value={this.state.description}
                 onChange={this.handleChange}
               ></textarea>
-              <button type="submit" disabled={!this.state.formValidTimeStart} 
-               className={`${!this.state.formValidTimeStart||!this.state.formValidTitle||!this.state.formValidTimeEnd
+              <button type="submit" disabled = {isValid}
+               className={`${isValid
                 ? 'disabled'
                 : ''
             } event-form__submit-btn`}>
