@@ -1,4 +1,4 @@
-Calendar
+<h1>Calendar</h1>
 
 <h2><a href="https://silly-flan-513e71.netlify.app/" rel="nofollow">Site link</a></h2>
 
@@ -30,7 +30,19 @@ When scrolling, the header (days of the week) should stay in place</li>
 <li>Title is required. Submit button disabled</li>
 <li>Start time less than end time and not equal</ul>
 </ul>
-
+<h3>The tech stack is:</h3>
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/HTML5" rel="nofollow">HTML5</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Cascading_Style_Sheets" rel="nofollow">CSS3</a></li>
+<li><a href="https://en.wikipedia.org/wiki/CSS_Flexible_Box_Layout" rel="nofollow">Flexbox</a></li>
+<li><a href="https://sass-lang.com/" rel="nofollow">Sass (Scss)</a></li>
+<li><a href="https://en.bem.info/methodology/" rel="nofollow">BEM methodology</a></li>
+<li><a href="https://reactjs.org/" rel="nofollow">React</a></li>
+<li><a href="https://reactjs.org/docs/hooks-intro.html" rel="nofollow">React Hoocks</a></li>
+<li><a href="https://eslint.org/" rel="nofollow">ESLint</a></li>
+<li><a href="https://webpack.js.org/" rel="nofollow">Webpack</a></li>
+<li><a href="https://babeljs.io/" rel="nofollow">Babel</a></li>
+</ul>
 <h3>For production</h3>
 <ul>
 <li>Production version must be in folder dist</li>
