@@ -1,8 +1,6 @@
-Vangoux
+Calendar
 
 <h2><a href="https://silly-flan-513e71.netlify.app/" rel="nofollow">Site link</a></h2>
-
-Layout supports all versions
 
 <h3>Design:</h3>
 <img src="https://gromcode.s3.eu-central-1.amazonaws.com/courses/front-end/lessons/react/calendar-project/design.png" >
@@ -32,8 +30,13 @@ When scrolling, the header (days of the week) should stay in place</li>
 <li>Title is required. Submit button disabled</li>
 <li>Start time less than end time and not equal</ul>
 </ul>
-<h3>For development</h3>
+
 <h3>For production</h3>
+<ul>
+<li>Production version must be in folder dist</li>
+</ul>
+<code>npm run build
+</code>
 <h3>Author</h3>
 <ul>
 <li>Tokareva Yuliya</li>
