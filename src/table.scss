@@ -1,0 +1,173 @@
+// table
+.table__shedule {
+  border-collapse: collapse;
+  width: 100%;
+  @include for-large-up {
+    margin-top: 35px;
+  }
+}
+
+thead {
+  @include for-large-down {
+    display: none;
+  }
+
+  @include for-large-up {
+    // display: block;
+  }
+}
+.table {
+  background: #fff;
+  &__title {
+    @include for-large-up {
+      color: #95989a;
+      font-size: 16px;
+      font-weight: 600;
+      padding: 0.75rem;
+      height: 48px;
+      // width: 1%;
+      white-space: nowrap;
+      text-align: left;
+    }
+  }
+
+  &__title:first-of-type {
+    @include for-large-down {
+      display: none;
+    }
+
+    @include for-large-up {
+      text-align: center;
+      // display: block;
+    }
+  }
+  &__flight {
+    flex-wrap: wrap;
+    padding: 5px 0;
+    font-size: 18px;
+    @include for-large-down {
+      display: flex;
+    }
+    @include for-large-up {
+      //height: 40px;
+      flex-wrap: nowrap;
+    }
+  }
+
+  &__flight:hover {
+    box-shadow: 0 5px 10px rgb(0 0 0 / 20%);
+  }
+
+  &__flight:hover &__flight-more span {
+    color: #1eb7ee;
+    border-bottom: 1px solid #1eb7ee;
+    opacity: 1;
+  }
+
+  &__flight-more span {
+    opacity: 0;
+  }
+
+  &__flight td {
+    line-height: 30px;
+    border: 0;
+    //width: 1%;
+    white-space: nowrap;
+    text-align: left;
+
+    height: 40px;
+    padding: 5px;
+    @include for-large-down {
+      width: 50%;
+    }
+    @include for-large-up {
+      // width: 1%;
+      line-height: 40px;
+      padding: 0.75rem;
+    }
+  }
+  &__flight td:first-of-type {
+    @include for-large-down {
+      display: none;
+    }
+
+    @include for-large-up {
+      text-align: center;
+      // display: block;
+    }
+  }
+  &__flight-terminal-type {
+    border-radius: 50%;
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    text-align: center;
+    line-height: 35px;
+    font-size: 22px;
+    font-weight: 700;
+  }
+  &__flight td:first-of-type span[data-terminal='A'] {
+    color: #63c745;
+    border: 1px solid #63c745;
+  }
+  &__flight td:first-of-type span[data-terminal='D'] {
+    border: 1px solid #1eb7ee;
+    color: #1eb7ee;
+  }
+  &__flight:nth-of-type(odd) {
+    background-color: rgba(0, 102, 135, 0.1);
+  }
+  &__flight-company {
+    display: flex;
+  }
+  &__flight-company-info {
+    display: flex;
+    margin: auto 0;
+  }
+  &__flight-company-name {
+    @include for-large-down {
+      display: none;
+    }
+
+    @include for-large-up {
+      // display: block;
+    }
+  }
+  &__flight-company-logo {
+    //height: 40px;
+    margin-right: 5px;
+    height: 24px;
+  }
+
+  &__flight-name {
+    font-size: 16px;
+  }
+  &__flight-more {
+    @include for-large-down {
+      display: none;
+    }
+
+    @include for-large-up {
+      //display: block;
+    }
+  }
+  &__flight-number {
+    @include for-large-down {
+      display: none;
+    }
+
+    @include for-large-up {
+      // display: block;
+    }
+  }
+  &__flight-number-mob {
+    color: #95989a;
+    font-size: 14px;
+    line-height: 40px;
+  }
+}
+.mob {
+  @include for-large-up {
+    display: none;
+  }
+}

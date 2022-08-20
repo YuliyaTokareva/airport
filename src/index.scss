@@ -1,8 +1,40 @@
-@import "src/variables.scss";
+@import 'breakpoints.scss';
+@import 'search.scss';
+@import 'result.scss';
+@import 'table.scss';
 * {
   box-sizing: border-box;
 }
 
 body {
-  font-family: Arial, Helvetica, sans-serif;
+  background: #e7efec;
+  min-height: 100vh;
+  color: #2f2f2f;
+  font-family: 'Open Sans', sans-serif;
+  position: relative;
+  font-size: 16px;
+}
+
+.page {
+  display: flex;
+  max-width: 1140px;
+  margin: auto;
+  margin-top: 40px;
+  flex-direction: column;
+  @include for-large-up {
+    margin-top: 50px;
+  }
+}
+.title {
+  font-weight: 300;
+  font-size: 35px;
+  line-height: 40px;
+
+  margin: 0;
+  padding-right: 10px;
+  padding-left: 10px;
+  @include for-large-up {
+    font-size: 70px;
+    line-height: 80px;
+  }
 }

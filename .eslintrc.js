@@ -1,18 +1,18 @@
 module.exports = {
-  extends: ['airbnb-base', 'eslint:recommended', 'plugin:react/recommended', 'plugin:prettier/recommended','plugin:react-hooks/recommended'],
+  extends: ['airbnb-base', 'plugin:react/recommended', 'plugin:prettier/recommended'],
   env: {
     es6: true,
     node: true,
     jest: true,
-    browser: true,
+    browser: true
   },
   parser: '@babel/eslint-parser',
   parserOptions: {
     ecmaFeatures: {
-      jsx: true,
+      jsx: true
     },
     ecmaVersion: 2021,
-    sourceType: 'module',
+    sourceType: 'module'
   },
   rules: {
     'import/extensions': 0,
@@ -25,17 +25,17 @@ module.exports = {
     'class-methods-use-this': 0,
     'import/no-extraneous-dependencies': 0,
     'arrow-body-style': 1,
-    'prefer-arrow-callback': 1,
+    'prefer-arrow-callback': 1
   },
   settings: {
     'import/resolver': {
       node: {
         extensions: ['.js', '.jsx'],
-        moduleDirectory: ['node_modules', 'src/'],
-      },
+        moduleDirectory: ['node_modules', 'src/']
+      }
     },
     react: {
-      version: 'detect',
-    },
-  },
+      version: 'detect'
+    }
+  }
 };
