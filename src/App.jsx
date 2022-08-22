@@ -1,23 +1,21 @@
-import React, { Component } from 'react';
-import Header from './components/header/Header.jsx';
-import Calendar from './components/calendar/Calendar.jsx';
-import Button from './components/button/Button.jsx';
+import React from 'react';
+import { Provider } from 'react-redux';
+import Search from './shedule/components/search/Search';
+import Navigation from './shedule/components/navigation/Navigation';
+import store from './store.js';
 
-import {
-  getWeekStartDate,
-  generateWeekRange,
-  nextWekGenerate,
-  prevWekGenerate
-} from '../src/utils/dateUtils.js';
-import { fetchEventList, deleteEvent, createEvent } from './gateway/events';
 import moment from 'moment';
-import './common.scss';
-import Modal from './components/modal/Modal.jsx';
 
-class App extends Component {
-  render() {
-    return <div></div>;
-  }
-}
+import Table from './shedule/components/table/Table';
+
+const App = () => {
+  return (
+    <Provider store={store}>
+      <Search />
+      <Navigation />
+      <Table />
+    </Provider>
+  );
+};
 
 export default App;

@@ -1,3 +1,4 @@
+@import '../../../breakpoints.scss';
 .search {
   width: 760px;
   justify-content: center;
@@ -68,4 +69,11 @@
     padding: 0 20px;
     cursor: pointer;
   }
+}
+.cls-1 {
+  fill: none;
+}
+
+.cls-2 {
+  fill: #95989a;
 }

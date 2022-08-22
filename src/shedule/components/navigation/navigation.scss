@@ -1,3 +1,4 @@
+@import '../../../breakpoints.scss';
 .search-result {
   margin-top: 40px;
   width: 100%;
@@ -113,7 +114,7 @@
   height: 40px;
   width: 40px;
   display: block;
-  background: #1eb7ee url(./img/calendar.SVG) center no-repeat;
+  background: #1eb7ee url(../../../img/calendar.SVG) center no-repeat;
   background-size: 70%;
 }
 .nav-left {

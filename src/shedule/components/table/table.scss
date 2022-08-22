@@ -1,9 +1,11 @@
-// table
-.table__shedule {
-  border-collapse: collapse;
-  width: 100%;
+@import '../../../breakpoints.scss';
+.table {
   @include for-large-up {
-    margin-top: 35px;
+    padding-top: 35px;
+  }
+  &__shedule {
+    border-collapse: collapse;
+    width: 100%;
   }
 }
 
