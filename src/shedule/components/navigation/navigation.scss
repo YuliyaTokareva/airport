@@ -21,6 +21,7 @@
   }
   &__dates-calendar {
     margin-left: 10px;
+    cursor: pointer;
   }
   &__date-header {
     display: flex;
@@ -163,4 +164,8 @@
   //margin-right: 15px;
   margin-left: 10px;
   margin-right: 10px;
+}
+.search-result__dates-calendar .react-datepicker {
+  position: absolute;
+  //top: 17px;
 }

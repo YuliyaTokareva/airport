@@ -1,9 +1,23 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import DatePicker from 'react-datepicker';
 import PropTypes from 'prop-types';
 import moment from 'moment';
+import * as shedulesActions from '../../shedule.actions';
+import { dateSelector, datepickerSelector } from '../../shedule.selectors';
 import './navigation.scss';
+import 'react-datepicker/dist/react-datepicker.css';
 
-const Navigation = () => {
+const Navigation = ({ date, datepicker, toggle, changeDate }) => {
+  const handleChange = (e) => {
+    changeDate(moment(e).format('DD-MM-YYYY'));
+    toggle();
+  };
+  const handleClick = (e) => {
+    e.preventDefault();
+    toggle();
+  };
+  const nowDate = new Date();
   return (
     <section className="search-result">
       <div className="nav-list">
@@ -60,22 +74,37 @@ const Navigation = () => {
       </div>
       <div className="search-result__dates">
         <div className="search-result__dates-calendar">
-          {/* <input type="date" /> */}
-          <span className="search-result__date-num show-calendar" type="date">
-            17/08
+          <span
+            className="search-result__date-num show-calendar example-custom-input"
+            onClick={(e) => handleClick(e)}
+            type="date">
+            {moment(date, 'DD-MM-YYYY').format('DD/MM')}
           </span>
+          {datepicker && (
+            <DatePicker
+              dateFormat="dd-MM-yyyy"
+              shouldCloseOnSelect={false}
+              onChange={handleChange}
+              selected={new Date()}
+              inline
+            />
+          )}
         </div>
         <div className="search-result__dates-conteiner">
           <div className="search-result__date yesterday">
-            <span className="search-result__date-num">17/08</span>
+            <span className="search-result__date-num">
+              {moment(nowDate).add(-1, 'day').format('DD/MM')}
+            </span>
             <span className="search-result__date-name">Вчора</span>
           </div>
           <div className="search-result__date today">
-            <span className="search-result__date-num">18/08</span>
+            <span className="search-result__date-num">{moment(nowDate).format('DD/MM')}</span>
             <span className="search-result__date-name">Cьогодні</span>
           </div>
           <div className="search-result__date tomorrow">
-            <span className="search-result__date-num">19/08</span>
+            <span className="search-result__date-num">
+              {moment(nowDate).add(1, 'day').format('DD/MM')}
+            </span>
             <span className="search-result__date-name">Завтра</span>
           </div>
         </div>
@@ -86,5 +115,16 @@ const Navigation = () => {
 // Navigation.propTypes = {
 //   weekDates: PropTypes.array,
 // };
-
-export default Navigation;
+const mapDispatch = (dispatch) => {
+  return {
+    toggle: () => dispatch(shedulesActions.onChangeToogleRecieved()),
+    changeDate: (date) => dispatch(shedulesActions.dateRecieved(date))
+  };
+};
+const mapState = (state) => {
+  return {
+    date: dateSelector(state),
+    datepicker: datepickerSelector(state)
+  };
+};
+export default connect(mapState, mapDispatch)(Navigation);

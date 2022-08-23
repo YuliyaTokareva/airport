@@ -8,41 +8,42 @@ module.exports = (env, argv) => {
   const config = {
     entry: './src/index.jsx',
     output: {
-      filename: 'bundle.js',
+      filename: 'bundle.js'
     },
     module: {
       rules: [
         {
           test: /.(js|jsx?)$/,
           exclude: /node_modules/,
-          use: ['babel-loader'],
+          use: ['babel-loader']
         },
         {
           test: /.s?css$/,
           use: [
             isProduction ? MiniCssExtractPlugin.loader : 'style-loader',
             'css-loader',
-            'sass-loader',
-          ],
-        },
-      ],
+            'sass-loader'
+          ]
+        }
+      ]
     },
     resolve: {
-      extensions: ['.js', '.jsx'],
+      extensions: ['.js', '.jsx']
     },
     plugins: [
       new webpack.ProgressPlugin(),
       new CleanWebpackPlugin(),
       new HtmlWebpackPlugin({
-        template: './src/index.html',
-      }),
+        template: './src/index.html'
+      })
     ],
     devServer: {
       historyApiFallback: true,
       open: true,
       hot: true,
       port: 8080,
-    },
+      historyApiFallback: true
+    }
   };
 
   if (isProduction) {
@@ -52,8 +53,8 @@ module.exports = (env, argv) => {
   if (isProduction) {
     config.plugins.push(
       new MiniCssExtractPlugin({
-        filename: '[name].css',
-      }),
+        filename: '[name].css'
+      })
     );
   }
 

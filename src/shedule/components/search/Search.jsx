@@ -1,8 +1,19 @@
 import React from 'react';
+//import { Link, useSearchParams } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import './search.scss';
 
 const Search = () => {
+  // const [searchParams, setSearchParams] = useSearchParams();
+  // const query = setSearchParams.get('post') || '';
+
+  const handlerSubmit = (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const query = form.value;
+    console.log(query);
+  };
+
   return (
     <section className="search">
       <h2 className="search__title title">ПОШУК РЕЙСУ</h2>
@@ -34,7 +45,7 @@ const Search = () => {
         </svg>
         <form name="searchFlightsForm" action="">
           <input className="search__line-input" type="text" placeholder="Номер рейсу або місто" />
-          <button className="search__line-button" type="submit">
+          <button className="search__line-button" type="submit" onSubmit={(e) => handlerSubmit(e)}>
             Знайти
           </button>
         </form>
