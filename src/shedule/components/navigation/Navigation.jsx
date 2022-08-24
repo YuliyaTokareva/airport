@@ -4,24 +4,42 @@ import DatePicker from 'react-datepicker';
 import PropTypes from 'prop-types';
 import moment from 'moment';
 import * as shedulesActions from '../../shedule.actions';
-import { dateSelector, datepickerSelector } from '../../shedule.selectors';
+import { dateSelector, datepickerSelector, tabSelector } from '../../shedule.selectors';
 import './navigation.scss';
 import 'react-datepicker/dist/react-datepicker.css';
 
-const Navigation = ({ date, datepicker, toggle, changeDate }) => {
-  const handleChange = (e) => {
+const Navigation = ({ date, datepicker, toggle, changeDate, changeTab, tab }) => {
+  const nowDate = new Date();
+  const esterday = moment(nowDate).add(-1, 'day').format();
+  const tomorrow = moment(nowDate).add(1, 'day').format();
+  const handleChangeCalendar = (e) => {
     changeDate(moment(e).format('DD-MM-YYYY'));
     toggle();
   };
-  const handleClick = (e) => {
+  const handleClickCalendar = (e) => {
     e.preventDefault();
     toggle();
   };
-  const nowDate = new Date();
+  const handleClickDateBtn = (e, date) => {
+    e.preventDefault();
+    changeDate(moment(date).format('DD-MM-YYYY'));
+  };
+  const handleClickTabBtn = (e, name) => {
+    e.preventDefault();
+
+    changeTab(name);
+  };
+
   return (
     <section className="search-result">
       <div className="nav-list">
-        <a href="#" className="nav-list__item nav-left nav-list__item-selected">
+        <a
+          href="#"
+          className={`${
+            tab === 'departure' ? 'nav-list__item-selected' : ''
+          } nav-list__item nav-left`}
+          //className="nav-list__item nav-left nav-list__item-selected"
+          onClick={(e) => handleClickTabBtn(e, 'departure')}>
           <span className="nav-list__item-icon">
             <svg
               width="40px"
@@ -47,7 +65,13 @@ const Navigation = ({ date, datepicker, toggle, changeDate }) => {
           </span>
           <span>виліт</span>
         </a>
-        <a href="#" className="nav-list__item nav-right">
+        <a
+          href="#"
+          className={`${
+            tab === 'arrival' ? 'nav-list__item-selected' : ''
+          } nav-list__item nav-right`}
+          //className="nav-list__item nav-right"
+          onClick={(e) => handleClickTabBtn(e, 'arrival')}>
           <span className="nav-list__item-icon">
             <svg
               width="40px"
@@ -76,7 +100,7 @@ const Navigation = ({ date, datepicker, toggle, changeDate }) => {
         <div className="search-result__dates-calendar">
           <span
             className="search-result__date-num show-calendar example-custom-input"
-            onClick={(e) => handleClick(e)}
+            onClick={(e) => handleClickCalendar(e)}
             type="date">
             {moment(date, 'DD-MM-YYYY').format('DD/MM')}
           </span>
@@ -84,27 +108,29 @@ const Navigation = ({ date, datepicker, toggle, changeDate }) => {
             <DatePicker
               dateFormat="dd-MM-yyyy"
               shouldCloseOnSelect={false}
-              onChange={handleChange}
+              onChange={handleChangeCalendar}
               selected={new Date()}
               inline
             />
           )}
         </div>
         <div className="search-result__dates-conteiner">
-          <div className="search-result__date yesterday">
-            <span className="search-result__date-num">
-              {moment(nowDate).add(-1, 'day').format('DD/MM')}
-            </span>
+          <div
+            className="search-result__date yesterday"
+            onClick={(e) => handleClickDateBtn(e, esterday)}>
+            <span className="search-result__date-num">{moment(esterday).format('DD/MM')}</span>
             <span className="search-result__date-name">Вчора</span>
           </div>
-          <div className="search-result__date today">
+          <div
+            className="search-result__date today"
+            onClick={(e) => handleClickDateBtn(e, nowDate)}>
             <span className="search-result__date-num">{moment(nowDate).format('DD/MM')}</span>
             <span className="search-result__date-name">Cьогодні</span>
           </div>
-          <div className="search-result__date tomorrow">
-            <span className="search-result__date-num">
-              {moment(nowDate).add(1, 'day').format('DD/MM')}
-            </span>
+          <div
+            className="search-result__date tomorrow"
+            onClick={(e) => handleClickDateBtn(e, tomorrow)}>
+            <span className="search-result__date-num">{moment(tomorrow).format('DD/MM')}</span>
             <span className="search-result__date-name">Завтра</span>
           </div>
         </div>
@@ -112,19 +138,26 @@ const Navigation = ({ date, datepicker, toggle, changeDate }) => {
     </section>
   );
 };
-// Navigation.propTypes = {
-//   weekDates: PropTypes.array,
-// };
+Navigation.propTypes = {
+  toggle: PropTypes.func.isRequired,
+  changeDate: PropTypes.func.isRequired,
+  changeTab: PropTypes.func.isRequired,
+  date: PropTypes.string.isRequired,
+  datepicker: PropTypes.bool.isRequired,
+  tab: PropTypes.string.isRequired
+};
 const mapDispatch = (dispatch) => {
   return {
     toggle: () => dispatch(shedulesActions.onChangeToogleRecieved()),
-    changeDate: (date) => dispatch(shedulesActions.dateRecieved(date))
+    changeDate: (date) => dispatch(shedulesActions.dateRecieved(date)),
+    changeTab: (name) => dispatch(shedulesActions.tabRecieved(name))
   };
 };
 const mapState = (state) => {
   return {
     date: dateSelector(state),
-    datepicker: datepickerSelector(state)
+    datepicker: datepickerSelector(state),
+    tab: tabSelector(state)
   };
 };
 export default connect(mapState, mapDispatch)(Navigation);

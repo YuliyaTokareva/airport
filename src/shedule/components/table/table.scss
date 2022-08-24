@@ -73,11 +73,10 @@ thead {
   &__flight td {
     line-height: 30px;
     border: 0;
-    //width: 1%;
+    //white-space: pre-line;
     white-space: nowrap;
     text-align: left;
-
-    height: 40px;
+    //height: 40px;
     padding: 5px;
     @include for-large-down {
       width: 50%;
@@ -87,6 +86,9 @@ thead {
       line-height: 40px;
       padding: 0.75rem;
     }
+  }
+  &__flight-way {
+    white-space: pre-line !important;
   }
   &__flight td:first-of-type {
     @include for-large-down {
@@ -172,4 +174,19 @@ thead {
   @include for-large-up {
     display: none;
   }
+}
+.no-found {
+  min-height: 300px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-align: center;
+  align-items: center;
+
+  justify-content: center;
+  text-align: center;
+  font-size: 30px;
+  font-weight: 700;
+  padding: 0 50px;
+  background: #fff;
 }

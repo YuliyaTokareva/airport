@@ -1,17 +1,20 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { connect } from 'react-redux';
 //import { Link, useSearchParams } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import * as shedulesActions from '../../shedule.actions';
 import './search.scss';
 
-const Search = () => {
-  // const [searchParams, setSearchParams] = useSearchParams();
-  // const query = setSearchParams.get('post') || '';
-
+const Search = ({ onSearch }) => {
+  const [count, setCount] = useState('');
+  const handleChange = (e) => {
+    setCount(e.target.value);
+  };
   const handlerSubmit = (e) => {
     e.preventDefault();
-    const form = e.target;
-    const query = form.value;
-    console.log(query);
+    onSearch(count);
+    setCount('');
+    console.log(count);
   };
 
   return (
@@ -22,17 +25,6 @@ const Search = () => {
           className="search__line-svg"
           xmlns="http://www.w3.org/2000/svg"
           viewBox="-512.053 29 44 43">
-          <defs>
-            {/* <style>
-                .cls-1 {
-                  fill: none;
-                }
-
-                .cls-2 {
-                  fill: #95989a;
-                }
-              </style> */}
-          </defs>
           <g id="ic_search_white" transform="translate(-512.053 29)">
             <rect id="rectangle" width="44" height="43" className="cls-1"></rect>
             <path
@@ -44,8 +36,14 @@ const Search = () => {
           </g>
         </svg>
         <form name="searchFlightsForm" action="">
-          <input className="search__line-input" type="text" placeholder="Номер рейсу або місто" />
-          <button className="search__line-button" type="submit" onSubmit={(e) => handlerSubmit(e)}>
+          <input
+            className="search__line-input"
+            type="text"
+            placeholder="Номер рейсу або місто"
+            value={count}
+            onChange={(e) => handleChange(e)}
+          />
+          <button className="search__line-button" type="submit" onClick={(e) => handlerSubmit(e)}>
             Знайти
           </button>
         </form>
@@ -53,14 +51,14 @@ const Search = () => {
     </section>
   );
 };
-// Button.propTypes = {
-//   onClick: PropTypes.func.isRequired,
-//   closeDeleteBtn: PropTypes.func.isRequired,
-//   clientX: PropTypes.number,
-//   clientY: PropTypes.number,
-// };
-// Button.defaultProps = {
-//   height: 60,
-//   marginTop: 0,
-// };
-export default Search;
+Search.propTypes = {
+  onSearch: PropTypes.func.isRequired
+};
+
+const mapDispatch = (dispatch) => {
+  return {
+    onSearch: (words) => dispatch(shedulesActions.searchRecieved(words))
+  };
+};
+
+export default connect(null, mapDispatch)(Search);

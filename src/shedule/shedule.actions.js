@@ -2,6 +2,8 @@ import * as sheduleGatewey from './sheduleGateway';
 export const SHEDULE_LIST_RECIEVED = 'SHEDULE_LIST_RECIEVED';
 export const TOGGLE_RECIEVED = 'TOGGLE_RECIEVED';
 export const DATE_RECIEVED = 'DATE_RECIEVED';
+export const TAB_RECIEVED = 'TAB_RECIEVED';
+export const SEARCH_RECIEVED = 'SEARCH_RECIEVED';
 
 export const sheduleListRecieved = (sheduleList) => {
   const action = {
@@ -31,6 +33,24 @@ export const dateRecieved = (date) => {
     type: DATE_RECIEVED,
     payload: {
       date
+    }
+  };
+  return action;
+};
+export const tabRecieved = (name) => {
+  const action = {
+    type: TAB_RECIEVED,
+    payload: {
+      name
+    }
+  };
+  return action;
+};
+export const searchRecieved = (words) => {
+  const action = {
+    type: SEARCH_RECIEVED,
+    payload: {
+      words
     }
   };
   return action;
