@@ -1,20 +1,28 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
-//import { Link, useSearchParams } from 'react-router-dom';
+import { useParams, useSearchParams } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import * as shedulesActions from '../../shedule.actions';
 import './search.scss';
 
 const Search = ({ onSearch }) => {
   const [count, setCount] = useState('');
+  const [searchParams, setSearchParams] = useSearchParams();
+  const searchQuery = searchParams.get('search');
+  //if (params.search.length) params.search = count;
+  //console.log(params.search);
   const handleChange = (e) => {
     setCount(e.target.value);
   };
   const handlerSubmit = (e) => {
     e.preventDefault();
-    onSearch(count);
-    setCount('');
+    const params = {};
+    if (count.length) params.search = count;
     console.log(count);
+    setSearchParams(params);
+    // onSearch(count);
+    //location.pathname = '/test';
+    setCount('');
   };
 
   return (

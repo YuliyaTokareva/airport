@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import DatePicker from 'react-datepicker';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import moment from 'moment';
 import * as shedulesActions from '../../shedule.actions';
 import { dateSelector, datepickerSelector, tabSelector } from '../../shedule.selectors';
@@ -33,8 +34,8 @@ const Navigation = ({ date, datepicker, toggle, changeDate, changeTab, tab }) =>
   return (
     <section className="search-result">
       <div className="nav-list">
-        <a
-          href="#"
+        <Link
+          to="/departure"
           className={`${
             tab === 'departure' ? 'nav-list__item-selected' : ''
           } nav-list__item nav-left`}
@@ -64,9 +65,10 @@ const Navigation = ({ date, datepicker, toggle, changeDate, changeTab, tab }) =>
             </svg>
           </span>
           <span>виліт</span>
-        </a>
-        <a
-          href="#"
+        </Link>
+
+        <Link
+          to="/arrival"
           className={`${
             tab === 'arrival' ? 'nav-list__item-selected' : ''
           } nav-list__item nav-right`}
@@ -94,7 +96,7 @@ const Navigation = ({ date, datepicker, toggle, changeDate, changeTab, tab }) =>
             </svg>
           </span>
           <span>приліт</span>
-        </a>
+        </Link>
       </div>
       <div className="search-result__dates">
         <div className="search-result__dates-calendar">
