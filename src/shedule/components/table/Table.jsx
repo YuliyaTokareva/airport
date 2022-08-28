@@ -1,13 +1,9 @@
 import React, { useEffect } from 'react';
+
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import * as shedulesActions from '../../shedule.actions';
-import {
-  sheduleListSelector,
-  dateSelector,
-  tabSelector,
-  wordsSearchSelector
-} from '../../shedule.selectors';
+import * as sheduleSelectors from '../../shedule.selectors';
 import './table.scss';
 import moment from 'moment';
 
@@ -108,10 +104,10 @@ const mapDispatch = {
 };
 const mapState = (state) => {
   return {
-    schedule: sheduleListSelector(state),
-    date: dateSelector(state),
-    tab: tabSelector(state),
-    wordsSearch: wordsSearchSelector(state)
+    schedule: sheduleSelectors.sheduleListSelector(state),
+    date: sheduleSelectors.dateSelector(state),
+    tab: sheduleSelectors.tabSelector(state),
+    wordsSearch: sheduleSelectors.wordsSearchSelector(state)
   };
 };
 export default connect(mapState, mapDispatch)(Table);
