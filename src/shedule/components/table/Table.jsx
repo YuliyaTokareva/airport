@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-
+import { useSearchParams, NavLink, useLocation } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import * as shedulesActions from '../../shedule.actions';
@@ -11,7 +11,7 @@ const Table = ({ schedule, date, tab, getSheduleList, wordsSearch }) => {
   useEffect(() => {
     getSheduleList(date);
   }, [tab, date, wordsSearch]);
-
+  console.log(tab);
   if (!schedule) {
     return null;
   }
@@ -81,7 +81,9 @@ const Table = ({ schedule, date, tab, getSheduleList, wordsSearch }) => {
                 </td>
                 <td className="table__flight-number">{`${board.codeShareData[0].codeShare}`}</td>
                 <td className="table__flight-more">
-                  <span>Деталі рейсу</span>
+                  <NavLink to={`/${board.ID}`} className="table__flight-more-link">
+                    <span>Деталі рейсу</span>
+                  </NavLink>
                 </td>
               </tr>
             );

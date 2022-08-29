@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import MagnifyingGlass from '../svg/MagnifyingGlass';
-import { useParams, useSearchParams } from 'react-router-dom';
+import { useSearchParams } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import * as shedulesActions from '../../shedule.actions';
 import './search.scss';
@@ -9,9 +9,7 @@ import './search.scss';
 const Search = ({ onSearch, params }) => {
   const [searchParams, setSearchParams] = useSearchParams();
   const searchQuery = searchParams.get('search') || '';
-
   const [count, setCount] = useState(searchQuery);
-  //const params = {};
   if (searchQuery.length) onSearch(searchQuery);
   const handleChange = (e) => {
     setCount(e.target.value);
@@ -20,12 +18,9 @@ const Search = ({ onSearch, params }) => {
     e.preventDefault();
     if (count.length) params.search = count;
     if (!count.length) delete params.search;
-
     setSearchParams(params);
     onSearch(count);
-    // setCount('');
   };
-  console.log(count);
   return (
     <section className="search">
       <h2 className="search__title title">ПОШУК РЕЙСУ</h2>

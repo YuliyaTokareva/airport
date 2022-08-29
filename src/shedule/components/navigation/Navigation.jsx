@@ -8,7 +8,7 @@ import { useSearchParams, NavLink, useLocation } from 'react-router-dom';
 import moment from 'moment';
 import * as shedulesActions from '../../shedule.actions';
 import { dateSelector, datepickerSelector, tabSelector } from '../../shedule.selectors';
-import { formaterDateToCalendar } from '../../../utils/dateUtils';
+import { formaterDateToCalendar, nowDate, esterday, tomorrow } from '../../../utils/dateUtils';
 import './navigation.scss';
 import 'react-datepicker/dist/react-datepicker.css';
 
@@ -19,28 +19,25 @@ const Navigation = ({
   changeDate,
   changeTab,
   formaterDateToCalendar,
-  params
+  params,
+  dateQuery,
+  tab,
+  pathname
 }) => {
-  const getDate = new Date();
-  const nowDate = moment(getDate, 'DD-MM-YYYY').format('DD-MM-YYYY');
-  const esterday = moment(getDate, 'DD-MM-YYYY').add(-1, 'day').format('DD-MM-YYYY');
-  const tomorrow = moment(getDate, 'DD-MM-YYYY').add(1, 'day').format('DD-MM-YYYY');
   const { search } = useLocation();
   const [searchParams, setSearchParams] = useSearchParams({});
 
   const searchQuery = searchParams.get('date') || '';
+
+  console.log(tab);
   useEffect(() => {
     if (searchQuery.length) changeDate(searchQuery);
-  }, [searchQuery]);
-  // const textQuery = searchParams.get('search') || '';
-
-  // const params = {};
-  // if (textQuery.length) params.search = textQuery;
-
+  }, [searchQuery, dateQuery, pathname]);
+  if (searchQuery.length) changeDate(searchQuery);
+  if (pathname.slice(1) !== tab) changeTab(pathname.slice(1));
   const handleChangeCalendar = (e) => {
     const dateOnSet = moment(e).format('DD-MM-YYYY');
     params.date = dateOnSet;
-
     setSearchParams(params);
     changeDate(dateOnSet);
     toggle();
@@ -49,20 +46,17 @@ const Navigation = ({
     e.preventDefault();
     toggle();
   };
-  const handleClickDateBtn = (e, newDate) => {
-    // e.preventDefault();
-    const dateOnSet = moment(newDate, 'DD-MM-YYYY').format('DD-MM-YYYY');
-
-    //addParams(date, newDate);
+  const handleClickDateBtn = (newDate) => {
+    console.log(newDate);
+    const dateOnSet = newDate;
     params.date = dateOnSet;
-    // console.log(params);
     setSearchParams(params);
     changeDate(dateOnSet);
   };
-  const handleClickTabBtn = (e, name) => {
+  const handleClickTabBtn = (name) => {
     changeTab(name);
   };
-  console.log(nowDate, esterday);
+
   return (
     <section className="search-result">
       <div className="nav-list">
@@ -73,7 +67,7 @@ const Navigation = ({
               ? ' nav-list__item nav-left nav-list__item-selected'
               : 'nav-list__item nav-left'
           }
-          onClick={(e) => handleClickTabBtn(e, 'departure')}>
+          onClick={() => handleClickTabBtn('departure')}>
           <span className="nav-list__item-icon">
             <UpAirplane />
           </span>
@@ -115,19 +109,17 @@ const Navigation = ({
         <div className="search-result__dates-conteiner">
           <div
             className="search-result__date yesterday"
-            onClick={(e) => handleClickDateBtn(e, esterday)}>
+            onClick={() => handleClickDateBtn(esterday)}>
             <span className="search-result__date-num">{formaterDateToCalendar(esterday)}</span>
             <span className="search-result__date-name">Вчора</span>
           </div>
-          <div
-            className="search-result__date today"
-            onClick={(e) => handleClickDateBtn(e, nowDate)}>
+          <div className="search-result__date today" onClick={() => handleClickDateBtn(nowDate)}>
             <span className="search-result__date-num">{formaterDateToCalendar(nowDate)}</span>
             <span className="search-result__date-name">Cьогодні</span>
           </div>
           <div
             className="search-result__date tomorrow"
-            onClick={(e) => handleClickDateBtn(e, tomorrow)}>
+            onClick={() => handleClickDateBtn(tomorrow)}>
             <span className="search-result__date-num">{formaterDateToCalendar(tomorrow)}</span>
             <span className="search-result__date-name">Завтра</span>
           </div>
@@ -157,8 +149,6 @@ const mapState = (state) => {
     date: dateSelector(state),
     datepicker: datepickerSelector(state),
     tab: tabSelector(state)
-
-    //params: params
   };
 };
 export default connect(mapState, mapDispatch)(Navigation);

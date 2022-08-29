@@ -17,21 +17,17 @@ const Home = () => {
   const addParams = (key, value) => {
     return (params[key] = value);
   };
-  console.log(useLocation());
+  console.log(pathname);
 
   return (
     <>
-      <Search
-        // setSearchParams={setSearchParams}
-        //textQuery={textQuery}
-        params={params}
-        // addParams={addParams}
-      />
+      <Search params={params} />
       <Navigation
         setSearchParams={setSearchParams}
-        datehQuery={textQuery}
+        dateQuery={textQuery}
         params={params}
         addParams={addParams}
+        pathname={pathname}
       />
       <Table params={params} />
     </>
