@@ -20,14 +20,6 @@ const App = () => {
               </main>
             }
           />
-          <Route
-            path="*"
-            element={
-              <main style={{ padding: '1rem' }}>
-                <h1>Ця сторінка зараз в розробці</h1>
-              </main>
-            }
-          />
         </Routes>
       </Provider>
     </BrowserRouter>
