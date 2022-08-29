@@ -1,5 +1,5 @@
 import React from 'react';
-import { HashRouter, Route, Routes, Navigate } from 'react-router-dom';
+import { BrowserRouter, HashRouter, Route, Routes, Navigate } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import Home from './Home';
 import NoFound from '../src/shedule/components/404/404';
@@ -7,7 +7,7 @@ import store from './store.js';
 
 const App = () => {
   return (
-    <HashRouter>
+    <BrowserRouter>
       <Provider store={store}>
         <Routes>
           <Route path="departure" element={<Home />} />
@@ -16,7 +16,7 @@ const App = () => {
           <Route path="*" element={<NoFound />} />
         </Routes>
       </Provider>
-    </HashRouter>
+    </BrowserRouter>
   );
 };
 
