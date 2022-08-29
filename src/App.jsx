@@ -11,10 +11,9 @@ const App = () => {
         <Routes>
           <Route path="/departure" element={<Home />} />
           <Route path="/arrival" element={<Home />} />
-          <Route path="/" element={<Home />} />
-          {/* <Route path="/" element={<Navigate replace to="/departure" />} /> */}
+          <Route path="/" element={<Navigate replace to="/departure" />} />
           <Route
-            path="/*"
+            path="*"
             element={
               <main style={{ padding: '1rem' }}>
                 <h1>Ця сторінка зараз в розробці</h1>
