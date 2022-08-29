@@ -29,12 +29,13 @@ const Navigation = ({
 
   const searchQuery = searchParams.get('date') || '';
 
-  console.log(tab);
+  console.log(pathname.slice(1) !== tab, pathname.slice(1), tab);
   useEffect(() => {
     if (searchQuery.length) changeDate(searchQuery);
-  }, [searchQuery, dateQuery, pathname]);
-  if (searchQuery.length) changeDate(searchQuery);
-  if (pathname.slice(1) !== tab) changeTab(pathname.slice(1));
+    if (pathname.slice(1) !== tab) changeTab(pathname.slice(1));
+  }, [searchQuery, dateQuery, tab, pathname]);
+  // if (searchQuery.length) changeDate(searchQuery);
+  // if (pathname.slice(1) !== tab) changeTab(pathname.slice(1));
   const handleChangeCalendar = (e) => {
     const dateOnSet = moment(e).format('DD-MM-YYYY');
     params.date = dateOnSet;
@@ -81,7 +82,7 @@ const Navigation = ({
               ? ' nav-list__item nav-right nav-list__item-selected'
               : 'nav-list__item nav-right'
           }
-          onClick={(e) => handleClickTabBtn(e, 'arrival')}>
+          onClick={() => handleClickTabBtn('arrival')}>
           <span className="nav-list__item-icon">
             <DownAirplane />
           </span>

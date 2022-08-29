@@ -7,11 +7,11 @@ import * as sheduleSelectors from '../../shedule.selectors';
 import './table.scss';
 import moment from 'moment';
 
-const Table = ({ schedule, date, tab, getSheduleList, wordsSearch }) => {
+const Table = ({ schedule, date, tab, getSheduleList, wordsSearch, pathname }) => {
   useEffect(() => {
     getSheduleList(date);
-  }, [tab, date, wordsSearch]);
-  console.log(tab);
+  }, [tab, date, wordsSearch, pathname]);
+  ///console.log(tab);
   if (!schedule) {
     return null;
   }
