@@ -42,13 +42,13 @@ const Search = ({ onSearch, params }) => {
     </section>
   );
 };
-Search.propTypes = {
-  onSearch: PropTypes.func.isRequired
-};
+// Search.propTypes = {
+//   onSearch: PropTypes.func.isRequired
+// };
 
 const mapDispatch = (dispatch) => {
   return {
-    onSearch: (words) => dispatch(shedulesActions.searchRecieved(words))
+    // onSearch: (words) => dispatch(shedulesActions.searchRecieved(words))
   };
 };
 

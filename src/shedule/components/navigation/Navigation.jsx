@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import UpAirplane from '../svg/UpAirplane';
 import DownAirplane from '../svg/DownAirplane';
@@ -7,39 +7,19 @@ import PropTypes from 'prop-types';
 import { useSearchParams, NavLink, useLocation } from 'react-router-dom';
 import moment from 'moment';
 import * as shedulesActions from '../../shedule.actions';
-import { dateSelector, datepickerSelector, tabSelector } from '../../shedule.selectors';
+import { datepickerSelector } from '../../shedule.selectors';
 import { formaterDateToCalendar, nowDate, esterday, tomorrow } from '../../../utils/dateUtils';
 import './navigation.scss';
 import 'react-datepicker/dist/react-datepicker.css';
 
-const Navigation = ({
-  datepicker,
-  toggle,
-  changeDate,
-  changeTab,
-  formaterDateToCalendar,
-  params,
-  dateQuery,
-  tab,
-  pathname
-}) => {
+const Navigation = ({ datepicker, toggle, formaterDateToCalendar, params }) => {
   const { search } = useLocation();
   const [searchParams, setSearchParams] = useSearchParams({});
-
   const searchQuery = searchParams.get('date') || '';
-
-  console.log(searchQuery.length);
-  // useEffect(() => {
-  //   // if (searchQuery.length) changeDate(searchQuery);
-  //   // console.log('g');
-  //   if (pathname.slice(1) !== tab) changeTab(pathname.slice(1));
-  // }, [searchQuery, dateQuery, tab, pathname]);
-
   const handleChangeCalendar = (e) => {
     const dateOnSet = moment(e).format('DD-MM-YYYY');
     params.date = dateOnSet;
     setSearchParams(params);
-    //changeDate(dateOnSet);
     toggle();
   };
   const handleClickCalendar = (e) => {
@@ -50,10 +30,6 @@ const Navigation = ({
     const dateOnSet = newDate;
     params.date = dateOnSet;
     setSearchParams(params);
-    // changeDate(dateOnSet);
-  };
-  const handleClickTabBtn = (name) => {
-    //  changeTab(name);
   };
 
   return (
@@ -65,8 +41,7 @@ const Navigation = ({
             isActive
               ? ' nav-list__item nav-left nav-list__item-selected'
               : 'nav-list__item nav-left'
-          }
-          onClick={() => handleClickTabBtn('departure')}>
+          }>
           <span className="nav-list__item-icon">
             <UpAirplane />
           </span>
@@ -79,8 +54,7 @@ const Navigation = ({
             isActive
               ? ' nav-list__item nav-right nav-list__item-selected'
               : 'nav-list__item nav-right'
-          }
-          onClick={() => handleClickTabBtn('arrival')}>
+          }>
           <span className="nav-list__item-icon">
             <DownAirplane />
           </span>
@@ -143,25 +117,19 @@ const Navigation = ({
 };
 Navigation.propTypes = {
   toggle: PropTypes.func.isRequired,
-  // changeDate: PropTypes.func.isRequired,
-  // changeTab: PropTypes.func.isRequired,
-  // date: PropTypes.string.isRequired,
-  datepicker: PropTypes.bool.isRequired
-  // tab: PropTypes.string.isRequired
+  datepicker: PropTypes.bool.isRequired,
+  formaterDateToCalendar: PropTypes.func.isRequired,
+  params: PropTypes.object
 };
 const mapDispatch = (dispatch) => {
   return {
     toggle: () => dispatch(shedulesActions.onChangeToogleRecieved()),
-    changeDate: (date) => dispatch(shedulesActions.dateRecieved(date)),
-    changeTab: (name) => dispatch(shedulesActions.tabRecieved(name)),
     formaterDateToCalendar: (date) => formaterDateToCalendar(date)
   };
 };
 const mapState = (state) => {
   return {
-    // date: dateSelector(state),
     datepicker: datepickerSelector(state)
-    // tab: tabSelector(state)
   };
 };
 export default connect(mapState, mapDispatch)(Navigation);

@@ -3,12 +3,14 @@ import {
   TOGGLE_RECIEVED,
   DATE_RECIEVED,
   TAB_RECIEVED,
-  SEARCH_RECIEVED
+  SEARCH_RECIEVED,
+  SHOW_SPINNER
 } from './shedule.actions';
 
 const initialState = {
   shedules: [],
-  datepicker: false
+  datepicker: false,
+  isFetching: false
 };
 
 const shedulesReduser = (state = initialState, action) => {
@@ -16,8 +18,15 @@ const shedulesReduser = (state = initialState, action) => {
     case SHEDULE_LIST_RECIEVED:
       return {
         ...state,
-        shedules: action.payload.sheduleList
+        shedules: action.payload.sheduleList,
+        isFetching: false
       };
+    case SHOW_SPINNER: {
+      return {
+        ...state,
+        isFetching: true
+      };
+    }
     case TOGGLE_RECIEVED:
       return {
         ...state,

@@ -7,3 +7,6 @@ export const tomorrow = moment(getDate, 'DD-MM-YYYY').add(1, 'day').format('DD-M
 export const formaterDateToCalendar = (date) => {
   return moment(date, 'DD-MM-YYYY').format('DD/MM');
 };
+export const formaterDateToShedule = (date) => {
+  return moment(date).format('H:mm');
+};
