@@ -13,7 +13,6 @@ import './navigation.scss';
 import 'react-datepicker/dist/react-datepicker.css';
 
 const Navigation = ({
-  date,
   datepicker,
   toggle,
   changeDate,
@@ -30,11 +29,11 @@ const Navigation = ({
   const searchQuery = searchParams.get('date') || '';
 
   console.log(searchQuery.length);
-  useEffect(() => {
-    if (searchQuery.length) changeDate(searchQuery);
-
-    if (pathname.slice(1) !== tab) changeTab(pathname.slice(1));
-  }, [searchQuery, dateQuery, tab, pathname]);
+  // useEffect(() => {
+  //   // if (searchQuery.length) changeDate(searchQuery);
+  //   // console.log('g');
+  //   if (pathname.slice(1) !== tab) changeTab(pathname.slice(1));
+  // }, [searchQuery, dateQuery, tab, pathname]);
 
   const handleChangeCalendar = (e) => {
     const dateOnSet = moment(e).format('DD-MM-YYYY');
@@ -54,7 +53,7 @@ const Navigation = ({
     // changeDate(dateOnSet);
   };
   const handleClickTabBtn = (name) => {
-    changeTab(name);
+    //  changeTab(name);
   };
 
   return (
@@ -94,7 +93,7 @@ const Navigation = ({
             className="search-result__date-num show-calendar example-custom-input"
             onClick={(e) => handleClickCalendar(e)}
             type="date">
-            {formaterDateToCalendar(date)}
+            {formaterDateToCalendar(nowDate)}
           </span>
           {datepicker && (
             <DatePicker
@@ -144,11 +143,11 @@ const Navigation = ({
 };
 Navigation.propTypes = {
   toggle: PropTypes.func.isRequired,
-  changeDate: PropTypes.func.isRequired,
-  changeTab: PropTypes.func.isRequired,
-  date: PropTypes.string.isRequired,
-  datepicker: PropTypes.bool.isRequired,
-  tab: PropTypes.string.isRequired
+  // changeDate: PropTypes.func.isRequired,
+  // changeTab: PropTypes.func.isRequired,
+  // date: PropTypes.string.isRequired,
+  datepicker: PropTypes.bool.isRequired
+  // tab: PropTypes.string.isRequired
 };
 const mapDispatch = (dispatch) => {
   return {
@@ -160,9 +159,9 @@ const mapDispatch = (dispatch) => {
 };
 const mapState = (state) => {
   return {
-    date: dateSelector(state),
-    datepicker: datepickerSelector(state),
-    tab: tabSelector(state)
+    // date: dateSelector(state),
+    datepicker: datepickerSelector(state)
+    // tab: tabSelector(state)
   };
 };
 export default connect(mapState, mapDispatch)(Navigation);

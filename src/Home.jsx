@@ -29,7 +29,7 @@ const Home = () => {
         addParams={addParams}
         pathname={pathname}
       />
-      <Table params={params} pathname={pathname} />
+      <Table params={params} pathname={pathname} textQuery={textQuery} />
     </>
   );
 };

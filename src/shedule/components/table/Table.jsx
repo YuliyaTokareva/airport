@@ -1,24 +1,39 @@
 import React, { useEffect } from 'react';
 import { useSearchParams, NavLink, useLocation } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { nowDate } from '../../../utils/dateUtils';
 import PropTypes from 'prop-types';
 import * as shedulesActions from '../../shedule.actions';
 import * as sheduleSelectors from '../../shedule.selectors';
 import './table.scss';
 import moment from 'moment';
 
-const Table = ({ schedule, date, tab, getSheduleList, wordsSearch, pathname }) => {
+const Table = ({ schedule, getSheduleList, wordsSearch, pathname, textQuery }) => {
+  const [searchParams, setSearchParams] = useSearchParams({});
+
+  const searchQuery = searchParams.get('date') || '';
   useEffect(() => {
-    getSheduleList(date);
-  }, [tab, date, wordsSearch, pathname]);
-  ///console.log(tab);
+    if (searchQuery.length) getSheduleList(searchQuery);
+    getSheduleList(nowDate);
+    // console.log(date);
+  }, [searchQuery, textQuery, pathname]);
+  console.log(new Date('2020-08-29T02:45:00Z'));
   if (!schedule) {
     return null;
   }
-  const filteredList = schedule[tab].filter((board) =>
-    board.codeShareData[0].codeShare.toLowerCase().includes(wordsSearch.toLowerCase())
-  );
+  const tab = pathname.slice(1);
 
+  const filteredList = schedule[tab]
+    .slice()
+    .sort((a, b) =>
+      tab == 'departure'
+        ? moment(a.timeDepShedule) - moment(b.timeDepShedule)
+        : moment(a.timeArrShedule) - moment(b.timeArrShedule)
+    )
+    .filter((board) =>
+      board.codeShareData[0].codeShare.toLowerCase().includes(textQuery.toLowerCase())
+    );
+  console.log(filteredList);
   return schedule[tab].length === 0 || filteredList.length === 0 ? (
     <div className="no-found">
       <span className="no-found__text">Немає рейсів</span>
@@ -52,8 +67,8 @@ const Table = ({ schedule, date, tab, getSheduleList, wordsSearch, pathname }) =
                 </td>
                 <td className="table__flight-time-filed">
                   {tab === 'departure'
-                    ? moment(board.timeDepShedule).format('h:mm')
-                    : moment(board.timeArrShedule).format('h:mm')}
+                    ? moment(board.timeDepShedule).format('H:mm')
+                    : moment(board.timeArrShedule).format('H:mm')}
                 </td>
 
                 <td className="table__flight-way">
@@ -62,8 +77,8 @@ const Table = ({ schedule, date, tab, getSheduleList, wordsSearch, pathname }) =
                 <td className="table__flight-mob mob"></td>
                 <td className="table__flight-status-filed">
                   {tab === 'departure'
-                    ? `Вилетів о  ${moment(board.timeTakeofFact).format('h:mm')}`
-                    : `Прибув ${moment(board.timeArrExpectCalc).format('h:mm')}`}
+                    ? `Вилетів о  ${moment(board.timeTakeofFact).format('H:mm')}`
+                    : `Прибув ${moment(board.timeArrExpectCalc).format('H:mm')}`}
                 </td>
                 <td className="table__flight-number-mob mob">
                   {`${board.codeShareData[0].codeShare}`}
@@ -95,10 +110,7 @@ const Table = ({ schedule, date, tab, getSheduleList, wordsSearch, pathname }) =
 };
 Table.propTypes = {
   getSheduleList: PropTypes.func.isRequired,
-  schedule: PropTypes.object,
-  date: PropTypes.string.isRequired,
-  tab: PropTypes.string.isRequired,
-  wordsSearch: PropTypes.string
+  schedule: PropTypes.object
 };
 
 const mapDispatch = {
@@ -106,10 +118,7 @@ const mapDispatch = {
 };
 const mapState = (state) => {
   return {
-    schedule: sheduleSelectors.sheduleListSelector(state),
-    date: sheduleSelectors.dateSelector(state),
-    tab: sheduleSelectors.tabSelector(state),
-    wordsSearch: sheduleSelectors.wordsSearchSelector(state)
+    schedule: sheduleSelectors.sheduleListSelector(state)
   };
 };
 export default connect(mapState, mapDispatch)(Table);
