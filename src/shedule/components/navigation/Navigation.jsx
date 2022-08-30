@@ -29,18 +29,18 @@ const Navigation = ({
 
   const searchQuery = searchParams.get('date') || '';
 
-  console.log(pathname.slice(1) !== tab, pathname.slice(1), tab);
+  console.log(searchQuery.length);
   useEffect(() => {
     if (searchQuery.length) changeDate(searchQuery);
+
     if (pathname.slice(1) !== tab) changeTab(pathname.slice(1));
   }, [searchQuery, dateQuery, tab, pathname]);
-  // if (searchQuery.length) changeDate(searchQuery);
-  // if (pathname.slice(1) !== tab) changeTab(pathname.slice(1));
+
   const handleChangeCalendar = (e) => {
     const dateOnSet = moment(e).format('DD-MM-YYYY');
     params.date = dateOnSet;
     setSearchParams(params);
-    changeDate(dateOnSet);
+    //changeDate(dateOnSet);
     toggle();
   };
   const handleClickCalendar = (e) => {
@@ -48,11 +48,10 @@ const Navigation = ({
     toggle();
   };
   const handleClickDateBtn = (newDate) => {
-    console.log(newDate);
     const dateOnSet = newDate;
     params.date = dateOnSet;
     setSearchParams(params);
-    changeDate(dateOnSet);
+    // changeDate(dateOnSet);
   };
   const handleClickTabBtn = (name) => {
     changeTab(name);
@@ -109,17 +108,31 @@ const Navigation = ({
         </div>
         <div className="search-result__dates-conteiner">
           <div
-            className="search-result__date yesterday"
+            className={
+              searchQuery === esterday
+                ? 'search-result__date yesterday active-date'
+                : 'search-result__date yesterday'
+            }
             onClick={() => handleClickDateBtn(esterday)}>
             <span className="search-result__date-num">{formaterDateToCalendar(esterday)}</span>
             <span className="search-result__date-name">Вчора</span>
           </div>
-          <div className="search-result__date today" onClick={() => handleClickDateBtn(nowDate)}>
+          <div
+            className={
+              searchQuery === nowDate
+                ? 'search-result__date today active-date'
+                : 'search-result__date today'
+            }
+            onClick={() => handleClickDateBtn(nowDate)}>
             <span className="search-result__date-num">{formaterDateToCalendar(nowDate)}</span>
             <span className="search-result__date-name">Cьогодні</span>
           </div>
           <div
-            className="search-result__date tomorrow"
+            className={
+              searchQuery === tomorrow
+                ? 'search-result__date tomorrow active-date'
+                : 'search-result__date tomorrow'
+            }
             onClick={() => handleClickDateBtn(tomorrow)}>
             <span className="search-result__date-num">{formaterDateToCalendar(tomorrow)}</span>
             <span className="search-result__date-name">Завтра</span>

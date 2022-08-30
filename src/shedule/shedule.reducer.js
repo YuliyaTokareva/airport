@@ -5,11 +5,12 @@ import {
   TAB_RECIEVED,
   SEARCH_RECIEVED
 } from './shedule.actions';
+import { nowDate } from '../utils/dateUtils';
 
 const initialState = {
   shedules: [],
   tab: 'departure',
-  dateSearch: '11-01-2022',
+  dateSearch: `30-08-2020`,
   datepicker: false,
   wordsSearch: ''
 };
