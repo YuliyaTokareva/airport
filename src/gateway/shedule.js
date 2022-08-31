@@ -1,4 +1,5 @@
 const baseUrl = 'https://api.iev.aero/api/flights';
+// eslint-disable-next-line
 export const fetchFlightsList = () =>
   fetch(baseUrl)
     .then((res) => {

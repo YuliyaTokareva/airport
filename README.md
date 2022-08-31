@@ -32,7 +32,7 @@ On the main screen, there is an input field for searching for flights by flight 
 
 <li>Use hooks to work with <a href="https://reacttraining.com/react-router/web/api/Hooks/useparams">route parameters</a> and <a href="https://reacttraining.com /react-router/web/api/Hooks/uselocation">query params</a></li>
 
-<li>Application state should be stored in <code>redux</code>Application state should be stored in <code>redux</code></li>
+<li>Application state should be stored in <code>redux</code></li>
 
 <li>Use React hooks where needed. No class components</li>
 
@@ -47,9 +47,13 @@ On the main screen, there is an input field for searching for flights by flight 
 <li><a href="https://en.bem.info/methodology/" rel="nofollow">BEM methodology</a></li>
 <li><a href="https://reactjs.org/" rel="nofollow">React</a></li>
 <li><a href="https://reactjs.org/docs/hooks-intro.html" rel="nofollow">React Hoocks</a></li>
+<li><a href="https://www.npmjs.com/package/react-datepicker" rel="nofollow">react-datepicker</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Redux_(JavaScript_library)" rel="nofollow">Redux</a></li>
 <li><a href="https://eslint.org/" rel="nofollow">ESLint</a></li>
 <li><a href="https://webpack.js.org/" rel="nofollow">Webpack</a></li>
 <li><a href="https://babeljs.io/" rel="nofollow">Babel</a></li>
+<li><a href="https://momentjs.com/" rel="nofollow">moments</a></li>
+
 </ul>
 
 <h3>Author</h3>
