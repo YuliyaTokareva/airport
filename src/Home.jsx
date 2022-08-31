@@ -19,11 +19,7 @@ const Home = () => {
     <>
       <Search params={params} />
       <Navigation params={params} />
-      <Table
-        pathname={pathname}
-        textQuery={textQuery}
-        // formaterDateToShedule={formaterDateToShedule}
-      />
+      <Table pathname={pathname} textQuery={textQuery} />
     </>
   );
 };
