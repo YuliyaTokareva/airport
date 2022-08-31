@@ -31,6 +31,7 @@ const Table = ({
   }
   const tab = pathname.slice(1);
   const filteredList = schedule[tab]
+    .slice()
     .sort((a, b) =>
       tab == 'departure'
         ? new Date(a.timeDepShedule) - new Date(b.timeDepShedule)
@@ -60,7 +61,6 @@ const Table = ({
         </thead>
         <tbody>
           {filteredList.map((board) => {
-            console.log(board.timeDepShedule);
             {
               board === undefined ? '' : board;
             }

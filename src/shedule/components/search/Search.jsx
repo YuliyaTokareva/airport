@@ -1,16 +1,13 @@
 import React, { useState } from 'react';
-import { connect } from 'react-redux';
 import MagnifyingGlass from '../svg/MagnifyingGlass';
 import { useSearchParams } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import * as shedulesActions from '../../shedule.actions';
 import './search.scss';
 
-const Search = ({ onSearch, params }) => {
+const Search = ({ params }) => {
   const [searchParams, setSearchParams] = useSearchParams();
   const searchQuery = searchParams.get('search') || '';
   const [count, setCount] = useState(searchQuery);
-  if (searchQuery.length) onSearch(searchQuery);
   const handleChange = (e) => {
     setCount(e.target.value);
   };
@@ -19,7 +16,6 @@ const Search = ({ onSearch, params }) => {
     if (count.length) params.search = count;
     if (!count.length) delete params.search;
     setSearchParams(params);
-    onSearch(count);
   };
   return (
     <section className="search">
@@ -42,14 +38,8 @@ const Search = ({ onSearch, params }) => {
     </section>
   );
 };
-// Search.propTypes = {
-//   onSearch: PropTypes.func.isRequired
-// };
-
-const mapDispatch = (dispatch) => {
-  return {
-    // onSearch: (words) => dispatch(shedulesActions.searchRecieved(words))
-  };
+Search.propTypes = {
+  params: PropTypes.object.isRequired
 };
 
-export default connect(null, mapDispatch)(Search);
+export default Search;

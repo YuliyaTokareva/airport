@@ -25,7 +25,8 @@ module.exports = {
     'class-methods-use-this': 0,
     'import/no-extraneous-dependencies': 0,
     'arrow-body-style': 1,
-    'prefer-arrow-callback': 1
+    'prefer-arrow-callback': 1,
+    'default-param-last': 0
   },
   settings: {
     'import/resolver': {
