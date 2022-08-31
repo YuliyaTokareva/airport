@@ -22,7 +22,7 @@ const Home = () => {
       <Table
         pathname={pathname}
         textQuery={textQuery}
-        formaterDateToShedule={formaterDateToShedule}
+        // formaterDateToShedule={formaterDateToShedule}
       />
     </>
   );

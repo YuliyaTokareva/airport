@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { useSearchParams, NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { nowDate } from '../../../utils/dateUtils';
+import { formaterDateToShedule } from '../../../utils/dateUtils';
 import PropTypes from 'prop-types';
 import * as shedulesActions from '../../shedule.actions';
 import * as sheduleSelectors from '../../shedule.selectors';
@@ -124,9 +125,13 @@ Table.propTypes = {
   isFetching: PropTypes.bool.isRequired
 };
 
-const mapDispatch = {
-  getSheduleList: shedulesActions.getSheduleList
+const mapDispatch = (dispatch) => {
+  return {
+    getSheduleList: (date) => dispatch(shedulesActions.getSheduleList(date)),
+    formaterDateToShedule: (time) => formaterDateToShedule(time)
+  };
 };
+
 const mapState = (state) => {
   return {
     schedule: sheduleSelectors.sheduleListSelector(state),
