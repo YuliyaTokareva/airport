@@ -1,14 +1,15 @@
 @import '../../../breakpoints.scss';
+@import 'src/variables.scss';
 .search-result {
   margin-top: 40px;
   width: 100%;
-  background: #fff;
+  background: $bacground-color-white;
   border-radius: 67px 67px 0px 0px;
 
   &__dates-conteiner {
     display: flex;
     flex-direction: row;
-    color: #b8b9b9;
+    color: $color-white-smoke;
     margin-left: 30px;
     width: 300px;
     cursor: pointer;
@@ -42,7 +43,7 @@
   &__date {
     display: flex;
     flex-direction: column;
-    border-bottom: 3px solid #d0d0d0;
+    border-bottom: $border-big-gray;
     flex-basis: 33.33333%;
     max-width: 33.33333%;
   }
@@ -51,62 +52,46 @@
   display: flex;
 
   &__item {
-    color: #fff;
-    border-color: #dee2e6 #dee2e6 #fff;
-
+    color: $color-white;
+    border-color: $border-color-gray;
     text-decoration: none;
     text-transform: uppercase;
-    background: #73d2f0;
-
+    background: $bacground-color-light-blue;
     display: inline-block;
-
     display: flex;
-
     flex: 1 1 auto;
-
     line-height: 50px;
     font-size: 14px;
     @include for-large-up {
-      // width: 60%;
       font-size: 24px;
       line-height: 60px;
-      // border-radius: 0px 80px 0px 0px;
-      // justify-content: left;
     }
   }
   &__item:hover {
-    background: #1eb7ee;
+    background: $bacground-color-blue;
   }
 
   &__item-selected {
-    //width: 60%;
-    background-color: #fff;
-    color: #20b7ee;
-
+    background-color: $bacground-color-white;
+    color: $color-blue-selected;
     display: inline-block;
     padding-left: 0;
-    //padding-right: 100px;
-
     z-index: 1;
-    // margin-right: -60px;
     display: flex;
-    // @include for-large-up {
-    //   border-radius: 60px 60px 0 0;
-    // }
   }
 
   &__item-selected:hover {
-    background-color: #fff;
-    color: #20b7ee;
+    background-color: $bacground-color-white;
+    color: $color-blue-selected;
   }
   &__item-selected .nav-list__item-icon path {
-    fill: #1eb7ee;
+    fill: $bacground-color-blue;
   }
 }
 .show-calendar {
   font-size: 12px;
   font-weight: 700;
-  color: #1eb7ee;
+  color: $color-blue;
   display: inline-block;
   text-align: center;
 }
@@ -115,7 +100,7 @@
   height: 40px;
   width: 40px;
   display: block;
-  background: #1eb7ee url(../../../img/calendar.SVG) center no-repeat;
+  background: $bacground-color-blue url(../../../img/calendar.SVG) center no-repeat;
   background-size: 70%;
 }
 .nav-left {
@@ -130,7 +115,6 @@
 }
 .nav-right {
   border-radius: 0 30px 0 0;
-
   border-radius: 0;
   justify-content: right;
   flex-direction: row-reverse;
@@ -149,7 +133,6 @@
   }
 }
 .nav-right.nav-list__item-selected {
-  //padding-left: 100px;
   border-radius: 30px 0 0 0;
   @include for-large-up {
     padding-right: 100px;
@@ -161,15 +144,13 @@
 }
 .nav-list__item-icon svg {
   margin: auto;
-  //margin-right: 15px;
   margin-left: 10px;
   margin-right: 10px;
 }
 .search-result__dates-calendar .react-datepicker {
   position: absolute;
-  //top: 17px;
 }
 .active-date {
-  color: #1eb7ee;
-  border-bottom: 3px solid #1eb7ee;
+  color: $color-blue;
+  border-bottom: $border-big-blue;
 }

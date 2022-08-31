@@ -6,7 +6,6 @@ import PropTypes from 'prop-types';
 import * as shedulesActions from '../../shedule.actions';
 import * as sheduleSelectors from '../../shedule.selectors';
 import Spinner from '../spinner/Spinner';
-import moment from 'moment';
 import './table.scss';
 
 const Table = ({
@@ -31,9 +30,12 @@ const Table = ({
     return null;
   }
   const tab = pathname.slice(1);
-
   const filteredList = schedule[tab]
-    .sort((a, b) => moment(a.timeDepShedule).format() > moment(b.timeDepShedule).format())
+    .sort((a, b) =>
+      tab == 'departure'
+        ? new Date(a.timeDepShedule) - new Date(b.timeDepShedule)
+        : new Date(a.timeArrShedule) - new Date(b.timeArrShedule)
+    )
     .filter((board) =>
       board.codeShareData[0].codeShare.toLowerCase().includes(textQuery.toLowerCase())
     );
@@ -58,6 +60,7 @@ const Table = ({
         </thead>
         <tbody>
           {filteredList.map((board) => {
+            console.log(board.timeDepShedule);
             {
               board === undefined ? '' : board;
             }

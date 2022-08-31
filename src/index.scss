@@ -1,15 +1,13 @@
 @import 'breakpoints.scss';
-// @import 'search.scss';
-// @import 'result.scss';
-// @import 'table.scss';
+@import 'src/variables.scss';
 * {
   box-sizing: border-box;
 }
 
 body {
-  background: #e7efec;
+  background: $bacground-color-light-gray;
   min-height: 100vh;
-  color: #2f2f2f;
+  color: $font-color;
   font-family: 'Open Sans', sans-serif;
   position: relative;
   font-size: 16px;

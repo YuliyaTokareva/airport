@@ -1,3 +1,4 @@
+@import 'src/variables.scss';
 .spinner {
   min-height: 300px;
   display: flex;
@@ -7,14 +8,14 @@
   font-size: 30px;
   font-weight: 700;
   padding: 0 50px;
-  background: #fff;
+  background: $color-white;
   &__element {
     display: block;
     margin: auto;
     width: 32px;
     height: 32px;
     border-radius: 50%;
-    border: 4px solid black;
+    border: $border-black;
     border-bottom-color: transparent;
     animation: rotate 1s linear infinite;
   }
