@@ -51,7 +51,7 @@ const Table = ({ schedule, getSheduleList, pathname, textQuery, isFetching }) =>
         </thead>
         <tbody>
           {filteredList.map((board) =>
-            board === undefined ? '' : <FlitShedule key={board.fltNo} board={board} tab={tab} />
+            board === undefined ? '' : <FlightShedule key={board.fltNo} board={board} tab={tab} />
           )}
         </tbody>
       </table>
