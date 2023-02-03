@@ -1,0 +1,170 @@
+@import '../../../breakpoints.scss';
+@import 'src/variables.scss';
+.table {
+  @include for-large-up {
+    padding-top: 35px;
+  }
+  &__shedule {
+    border-collapse: collapse;
+    width: 100%;
+  }
+}
+
+thead {
+  @include for-large-down {
+    display: none;
+  }
+}
+.table {
+  background: $bacground-color-white;
+  &__title {
+    @include for-large-up {
+      color: $color-light-gray;
+      font-size: 16px;
+      font-weight: 600;
+      padding: 0.75rem;
+      height: 48px;
+
+      white-space: nowrap;
+      text-align: left;
+    }
+  }
+
+  &__title:first-of-type {
+    @include for-large-down {
+      display: none;
+    }
+
+    @include for-large-up {
+      text-align: center;
+    }
+  }
+  &__flight {
+    flex-wrap: wrap;
+    padding: 5px 0;
+    font-size: 18px;
+    @include for-large-down {
+      display: flex;
+    }
+    @include for-large-up {
+      flex-wrap: nowrap;
+    }
+  }
+
+  &__flight:hover {
+    box-shadow: $hover-shadow;
+  }
+
+  &__flight:hover &__flight-more span {
+    color: $bacground-color-blue;
+    border-bottom: $border-blue;
+    opacity: 1;
+  }
+
+  &__flight-more span {
+    opacity: 0;
+  }
+
+  &__flight td {
+    line-height: 30px;
+    border: 0;
+    white-space: nowrap;
+    text-align: left;
+
+    padding: 5px;
+    @include for-large-down {
+      width: 50%;
+    }
+    @include for-large-up {
+      line-height: 40px;
+      padding: 0.75rem;
+    }
+  }
+  &__flight-way {
+    white-space: pre-line !important;
+  }
+  &__flight td:first-of-type {
+    @include for-large-down {
+      display: none;
+    }
+
+    @include for-large-up {
+      text-align: center;
+    }
+  }
+  &__flight-terminal-type {
+    border-radius: 50%;
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    text-align: center;
+    line-height: 35px;
+    font-size: 22px;
+    font-weight: 700;
+  }
+  &__flight td:first-of-type span[data-terminal='A'] {
+    color: $color-green;
+    border: $border-green;
+  }
+  &__flight td:first-of-type span[data-terminal='D'] {
+    border: $border-blue;
+    color: $color-blue;
+  }
+  &__flight:nth-of-type(odd) {
+    background-color: $bacground-color-steelBlue;
+  }
+  &__flight-company {
+    display: flex;
+  }
+  &__flight-company-info {
+    display: flex;
+    margin: auto 0;
+  }
+  &__flight-company-name {
+    @include for-large-down {
+      display: none;
+    }
+  }
+  &__flight-company-logo {
+    margin-right: 5px;
+    height: 24px;
+  }
+
+  &__flight-name {
+    font-size: 16px;
+  }
+  &__flight-more {
+    @include for-large-down {
+      display: none;
+    }
+  }
+  &__flight-number {
+    @include for-large-down {
+      display: none;
+    }
+  }
+  &__flight-number-mob {
+    color: $color-light-gray;
+    font-size: 14px;
+    line-height: 40px;
+  }
+}
+.mob {
+  @include for-large-up {
+    display: none;
+  }
+}
+.no-found {
+  min-height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 30px;
+  font-weight: 700;
+  padding: 0 50px;
+  background: $bacground-color-white;
+}
+.table__flight-more-link {
+  text-decoration: none;
+}

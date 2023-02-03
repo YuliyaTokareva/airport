@@ -7,3 +7,4 @@ export const tomorrow = moment(getDate, 'DD-MM-YYYY').add(1, 'day').format('DD-M
 
 export const formaterDateToCalendar = (date) => moment(date, 'DD-MM-YYYY').format('DD/MM');
 export const formaterDateToShedule = (date) => moment(date).format('H:mm');
+export const formaterDateToFilter = (date) => moment(date).format('DD-MM-YYYY');

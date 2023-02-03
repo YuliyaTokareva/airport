@@ -26,7 +26,7 @@ const Search = ({ params }) => {
           <input
             className="search__line-input"
             type="text"
-            placeholder="Номер рейсу або місто"
+            placeholder="Номер рейсу"
             value={count}
             onChange={(e) => handleChange(e)}
           />
