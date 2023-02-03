@@ -1,6 +1,6 @@
 <h1>Kyiv airport</h1>
 
-<h2><a href="https://dreamy-cannoli-af2a17.netlify.app/departure" rel="nofollow">Site link</a></h2>
+<h2><a href="http://localhost:8080/departure?date=03-02-2021" rel="nofollow">Site link</a></h2>
 
 <h3>Design:</h3>
 <img src="https://gromcode.s3.eu-central-1.amazonaws.com/front-end/redux/lesson7/hw1/flights-list.png" >
