@@ -51,7 +51,7 @@ const FlightShedule = ({ board, tab }) => {
     </tr>
   );
 };
-FlitShedule.propTypes = {
+FlightShedule.propTypes = {
   board: PropTypes.object,
   tab: PropTypes.oneOf(['departure', 'arrival']),
   formaterDateToShedule: PropTypes.func.isRequired
